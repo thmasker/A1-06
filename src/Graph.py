@@ -10,23 +10,24 @@ class Graph:
         self.nodes = self.graph.findall('default:graph/default:node', self.ns)
 
 
-    def BelongNode(self, nodeid):
-        isNode = False
-
+    def belongNode(self, nodeid):
         for node in self.nodes:
             if nodeid == node.get('id'):
-                isNode = True
-                break
+                return True
 
-        return isNode
+        return False
 
+    def positionNode(self, nodeid):
+        for node in self.nodes:
+            if nodeid == node.get('id'):
+                return node[1].text, node[0].text
 
-
-    #def positionNode(nodeid):
+        
 
 
     #def adjacentNode(nodeid):
 
 if __name__ == '__main__':
-    anchuras = Graph('data/Anchuras.graphml')
-    anchuras.BelongNode('4928063639')
+    anchuras = Graph('../data/Anchuras.graphml')
+    anchuras.positionNode('4928063639')
+

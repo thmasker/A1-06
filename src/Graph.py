@@ -22,12 +22,11 @@ class Graph:
             if nodeid == node.get('id'):
                 return node[1].text, node[0].text
 
-        
+        return '[ERROR] Node does not exist on the graph'
 
 
     #def adjacentNode(nodeid):
 
 if __name__ == '__main__':
     anchuras = Graph('../data/Anchuras.graphml')
-    anchuras.positionNode('4928063639')
 

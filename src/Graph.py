@@ -29,13 +29,20 @@ class Graph:
         if self.belongNode(nodeid):
             for edge in self.edges:
                 if edge.get('source') == nodeid:
-                    adjacencyList.append((edge.get('source'), edge.get('target'),
-                                          edge[1].text if edge[1].get('key') == 'd13' else 'SinNombre', edge[4].text))
+                    adjacencyList.append((edge.get('source'), edge.get('target')))
+
+                    for data in edge:
+                        if data.get('key') == 'd13':
+                            adjacencyList[-1] = adjacencyList[-1] + (data.text,)
+                        elif data.get('key') == 'd14':
+                            adjacencyList[-1] = adjacencyList[-1] + ('SinNombre',)
+                        elif data.get('key') == 'd11':
+                            adjacencyList[-1] = adjacencyList[-1] + (data.text,)
         else:
             adjacencyList = '[ERROR] Node does not exist on the node'
 
         return adjacencyList
 
 if __name__ == '__main__':
-    anchuras = Graph('../data/Anchuras.graphml')
-    print(anchuras.adjacentNode('4331489627'))
+    anchuras = Graph('data/Anchuras.graphml')
+    print(anchuras.adjacentNode('4845150944'))

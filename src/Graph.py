@@ -29,15 +29,17 @@ class Graph:
         if self.belongNode(nodeid):
             for edge in self.edges:
                 if edge.get('source') == nodeid:
-                    adjacencyList.append((edge.get('source'), edge.get('target')))
+                    adjacencyList.append((edge.get('source'), edge.get('target'), 'SinNombre', 'NULL'))
 
                     for data in edge:
                         if data.get('key') == 'd13':
-                            adjacencyList[-1] = adjacencyList[-1] + (data.text,)
-                        elif data.get('key') == 'd14':
-                            adjacencyList[-1] = adjacencyList[-1] + ('SinNombre',)
+                            lst = list(adjacencyList[-1])
+                            lst[2] = data.text
+                            adjacencyList[-1] = tuple(lst)
                         elif data.get('key') == 'd11':
-                            adjacencyList[-1] = adjacencyList[-1] + (data.text,)
+                            lst = list(adjacencyList[-1])
+                            lst[3] = data.text
+                            adjacencyList[-1] = tuple(lst)
         else:
             adjacencyList = '[ERROR] Node does not exist on the node'
 

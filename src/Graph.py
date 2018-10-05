@@ -6,8 +6,14 @@ class Graph:
         self.graph = ET.parse(self.file).getroot()
 
         self.ns = {'default': 'http://graphml.graphdrawing.org/xmlns'}  # ns = name space
-        self.nodes = self.graph.findall('default:graph/default:node', self.ns)
-        self.edges = self.graph.findall('default:graph/default:edge', self.ns)
+        self.keys = {} 
+
+        for key in self.graph.findall('default:key', self.ns):      # Store edge keys
+            if key.get('for') == 'edge':
+                self.keys[key.get('attr.name')] = key.get('id')
+
+        self.nodes = self.graph.findall('default:graph/default:node', self.ns)      # Store nodes
+        self.edges = self.graph.findall('default:graph/default:edge', self.ns)      # Store edges
 
     def belongNode(self, nodeid):
         for node in self.nodes:
@@ -32,11 +38,11 @@ class Graph:
                     adjacencyList.append((edge.get('source'), edge.get('target'), 'SinNombre', 'NULL'))
 
                     for data in edge:
-                        if data.get('key') == 'd13':
+                        if data.get('key') == self.keys['name']:
                             lst = list(adjacencyList[-1])
                             lst[2] = data.text
                             adjacencyList[-1] = tuple(lst)
-                        elif data.get('key') == 'd11':
+                        elif data.get('key') == self.keys['length']:
                             lst = list(adjacencyList[-1])
                             lst[3] = data.text
                             adjacencyList[-1] = tuple(lst)
@@ -46,5 +52,5 @@ class Graph:
         return adjacencyList
 
 if __name__ == '__main__':
-    anchuras = Graph('data/Anchuras.graphml')
-    print(anchuras.adjacentNode('4845150944'))
+    anchuras = Graph('data/Ciudad Real.graphml')
+    print(anchuras.adjacentNode('1386521977'))

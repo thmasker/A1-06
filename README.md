@@ -1,6 +1,9 @@
 # A1-06
 Intelligent Systems Git repository
 
+INSTRUCTIONS TO TEST Graph.py
+	Running tests.py script, you can check both three methods created on src/Graph.py
+	
 IMPORTANT!!!
 	Before pushing any new changes, you must do a "Downloading new changes" operation. You can only commit without doing it
 

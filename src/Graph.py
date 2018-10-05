@@ -82,7 +82,3 @@ class Graph:
             adjacencyList = '[ERROR] Node does not exist on the node'
 
         return adjacencyList
-
-if __name__ == '__main__':
-    anchuras = Graph('data/Ciudad Real.graphml')
-    print(anchuras.adjacentNode('1386521977'))

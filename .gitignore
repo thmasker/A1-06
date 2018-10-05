@@ -1,2 +1,6 @@
 .idea/
 venv/
+doc/*.aux
+doc/*.log
+doc/*synctex.gz
+src/__pycache__/*

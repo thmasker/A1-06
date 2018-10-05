@@ -1,7 +1,7 @@
 # A1-06
 Intelligent Systems Git repository
 
-INSTRUCTIONS TO TEST Graph.py
+HOW TO TEST Graph.py
 	Running tests.py script, you can check both three methods created on src/Graph.py
 	
 IMPORTANT!!!

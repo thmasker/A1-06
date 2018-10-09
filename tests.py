@@ -11,6 +11,7 @@ if __name__ == '__main__':
         mygraph = G.Graph(graphml)
     except FileNotFoundError as fnf_error:
         print(fnf_error)
+        raise SystemExit
 
     while True:
         nodeid = input('Write down the node id you want to test: ')

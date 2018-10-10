@@ -9,7 +9,7 @@ class StateSpace:
     Method name:    __init__
     Description:  Constructor
     Calling arguments:  graphml: path to any .graphml file
-    Checked Exceptions: : thrown when the entered file is not a .graphml type
+    Checked Exceptions:
     """
     def __init__(self, graphml):
         self.graph = Graph(graphml)

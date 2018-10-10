@@ -15,9 +15,9 @@ class Graph:
         self.file = graphml
         try:
             self.graph = ET.parse(self.file).getroot()
-        except ET.ParseError as parserror:
+        except ET.ParseError:
             print('\n' + graphml + ' is not a \".graphml\" or is it corrupted')
-            return
+            raise SystemExit
 
         self.ns = {'default': 'http://graphml.graphdrawing.org/xmlns'}  # ns = name space
         self.keys = {} 

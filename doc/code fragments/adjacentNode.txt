@@ -1,0 +1,27 @@
+def adjacentNode(self, nodeid):
+        adjacencyList = []
+
+        if self.belongNode(nodeid):
+            for edge in self.edges:
+                if edge.get('source') == nodeid:
+                    adjacencyList.append((edge.get('source'), edge.get('target'), 'SinNombre', 'NULL'))
+
+                    for data in edge:
+                        if data.get('key') == self.keys['name']:
+                            lst = list(adjacencyList[-1])
+                            lst[2] = data.text
+                            adjacencyList[-1] = tuple(lst)
+                        elif data.get('key') == self.keys['length']:
+                            lst = list(adjacencyList[-1])
+                            lst[3] = data.text
+                            adjacencyList[-1] = tuple(lst)
+        else:
+            adjacencyList = '[ERROR] Node does not exist on the node'
+
+        return adjacencyList
+		
+Keys Dictionary
+
+for key in self.graph.findall('default:key', self.ns):      # Store edge keys
+            if key.get('for') == 'edge':
+                self.keys[key.get('attr.name')] = key.get('id')

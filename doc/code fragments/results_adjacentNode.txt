@@ -1,0 +1,20 @@
+Is this node on the graph? True
+Position (latitude and longitude): ('-4.3544889', '38.8808616')
+Adjacency list: [('1851273807', '4587612273', 'Plaza del Pilar', '23.656'), ('1851273807', '1851273984', 'Plaza del Pilar', '21.923'), ('1851273807', '1851274092', 'Carretera de los Pozuelos', '98.36399999999999')]
+
+Is this node on the graph? True
+Position (latitude and longitude): ('-3.9227797', '38.9936719')
+Adjacency list: [('764039207', '2711270344', 'Calle Pozo Santa Catalina', '135.996'), ('764039207', '764039210', 'Calle Extramuros de Calatrava', '50.307')]
+
+Is this node on the graph? True
+Position (latitude and longitude): ('-4.8550238', '39.5363048')
+Adjacency list: [('2012263661', '2012263377', 'Calle Carmen', '51.09'), ('2012263661', '2012263373', 'Calle Carmen', '62.747'), ('2012263661', '2012263518', 'Calle Carmen', '119.99600000000001')]
+
+Graph file loaded in:  0.009773681000005752  seconds
+Adjacency list loaded in:  0.0003832729999970752  seconds
+
+Graph file loaded in:  0.07164645499999978  seconds
+Adjacency list loaded in:  0.0023671510000013996  seconds
+
+Graph file loaded in:  0.007518905999999603  seconds
+Adjacency list loaded in:  0.0008977220000012665  seconds

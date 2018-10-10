@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 
+
 """
 Class Name: Graph
 Description:  Reads .graphml files and allows users obtain different graph information

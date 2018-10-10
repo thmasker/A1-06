@@ -15,4 +15,3 @@ class State:
         self.currentPosition = currentPosition
         self.nodesLeft = nodesLeft
         self.md5checksum = hashlib.md5((str(self.currentPosition) + ",".join(self.nodesLeft)).encode())
-

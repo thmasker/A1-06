@@ -36,7 +36,6 @@
 	tabsize=2
 }
 
-
 \date{\textbf{\url{https://github.com/thmasker/A1-06}}}
 \author{Pablo Alcázar Morales \and Güray Meriç \and Diego Pedregal Hidalgo}
 \title{\textbf{IS Lab Project \textbar A1-06}}
@@ -44,8 +43,31 @@
 	\maketitle
 	\section{\textit{Task1}}
 	For this task, we found a simple, effective and easy to use library on Python, called  \href{https://docs.python.org/3/library/xml.etree.elementtree.html#module-xml.etree.ElementTree}{\textit{\underline{ElementTree}}}, so after seeing other options like \textit{minidom}, we decided to use it.
-	After that, we created the required \textit{Graph} class, which constructor parses the chosen \textit{.graphml} file, and stores both nodes and edges in two independent variables.
+	After that, we created the required \textit{Graph} class, which constructor parses the chosen \textit{.graphml} file, and stores both nodes and edges in two independent variables. Both \textit{belongNode} and \textit{positionNode} methods are really easy to understand, so we won't go on further explanations.
 	
 	
-	The complex of the three created methods is \textit{adjacentNode}: we go through the inner edges data and store all the specified information about the desired node's adjacents (source node, target node, street name, source-target distance in meters).
+	The most complex of the three methods created is \textit{adjacentNode} (see \textit{Figure 1.1}). This method goes through all the node's edges, and appends to the adjacency list those which source node is the \textit{nodeid} we are looking for. Firstly, we append each edge to the adjacency list with their \textit{name} and \textit{length} fields as \textit{SinNombre} and \textit{NULL} respectively. After that we search both fields on the inner data of each edge using the keys dictionary created on the constructor, and we refill both attributes with the real ones. If anyone of them is missing, we'll know that, as it will appear as \textit{SinNombre} or \textit{NULL} in the adjacency list returned.
+	
+	\lstset{style=mystyle}
+	\lstinputlisting[title={Figure 1.1 Method \textit{adjacentNode}},language=python]{"code fragments/adjacentNode.txt"}
+	\lstset{style=mystyle}
+	\lstinputlisting[title={Figure 1.2 Keys dictionary}, firstline=25, lastline=27]{"code fragments/adjacentNode.txt"}
+	
+	
+		\subsection{Some results}
+		We coded a script (\textit{tests.py}) to be able to test the results given by the program. We show some of them next:
+		\lstset{style=mystyle}
+		\lstinputlisting[title={Figure 1.1.1 Result for \textit{nodeid} 1851273807 from \textit{Abenójar.graphml}}, firstline=1, lastline=3]{"code fragments/results_adjacentNode.txt"}
+		\lstset{style=mystyle}
+		\lstinputlisting[title={Figure 1.1.2 Result for \textit{nodeid} 764039207 from \textit{Ciudad Real.graphml}}, firstline=5, lastline=7]{"code fragments/results_adjacentNode.txt"}
+		\lstset{style=mystyle}
+		\lstinputlisting[title={Figure 1.1.3 Result for \textit{nodeid} 2012263661 from \textit{Anchuras.graphml}}, firstline=9, lastline=11]{"code fragments/results_adjacentNode.txt"}
+		
+		\subsection{Timing}
+		\lstset{style=mystyle}
+		\lstinputlisting[title={Figure 1.2.1 Result for \textit{nodeid} 4753226234 from \textit{Abenójar.graphml}}, firstline=13, lastline=14]{"code fragments/results_adjacentNode.txt"}
+		\lstset{style=mystyle}
+		\lstinputlisting[title={Figure 1.2.2 Result for \textit{nodeid} 764039166 from \textit{Ciudad Real.graphml}}, firstline=16, lastline=17]{"code fragments/results_adjacentNode.txt"}
+		\lstset{style=mystyle}
+		\lstinputlisting[title={Figure 1.2.3 Result for \textit{nodeid} 4928063639 from \textit{Anchuras.graphml}}, firstline=19, lastline=20]{"code fragments/results_adjacentNode.txt"}
 \end{document}

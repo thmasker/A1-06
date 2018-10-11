@@ -32,13 +32,13 @@ class State:
             self.mergeNodes(nodesList, leftIndex, middleIndex, rightIndex)
 
     """
-        Method name:    mergeNodes
-        Description of the Method:  sorts the list passed as input following ascendent numerical order
-        Calling arguments:  - nodesList: list of node ids to order
-                            - leftIndex: nodesList starting position of the sublist to order
-                            - middleIndex: nodesList middle position of the sublist to order
-                            - rightIndex: nodesList last position of the sublist to order
-        """
+    Method name:    mergeNodes
+    Description of the Method:  sorts the list passed as input following ascendent numerical order
+    Calling arguments:  - nodesList: list of node ids to order
+                        - leftIndex: nodesList starting position of the sublist to order
+                        - middleIndex: nodesList middle position of the sublist to order
+                        - rightIndex: nodesList last position of the sublist to order
+    """
     def mergeNodes(self, nodesList, leftIndex, middleIndex, rightIndex):
         k = leftIndex
         tempLeft, tempRight = [0] * (middleIndex - leftIndex + 1), [0] * (rightIndex - middleIndex)

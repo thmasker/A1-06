@@ -33,7 +33,7 @@ class Graph:
     Method name:    belongNode
     Description:  Analyze if the entered id belongs to a node in the graph
     Calling arguments:  nodeid: node to identify its belonging to the graph
-    Return value: Boolean: true if nodeid exists on the graph; False otherwise
+    Return value: Boolean: True if nodeid exists on the graph; False otherwise
     """
     def belongNode(self, nodeid):
         for node in self.nodes:

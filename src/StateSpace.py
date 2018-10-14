@@ -15,9 +15,9 @@ class StateSpace:
         self.graph = Graph(graphml)
 
     """
-    Method name:    __init__
-    Description:  Constructor
-    Calling arguments:  graphml: path to any .graphml file
+    Method name:
+    Description:
+    Calling arguments:
     Return value:
     Checked Exceptions:
     """
@@ -25,11 +25,10 @@ class StateSpace:
 
 
     """
-    Method name:    __init__
-    Description:  Constructor
-    Calling arguments:  graphml: path to any .graphml file
-    Return value:
-    Checked Exceptions:
+    Method name:    belongNode
+    Description:    Checks if the state is a feasible state on the current graph
+    Calling arguments:  state: a certain state object
+    Return value:   Boolean: True if state is feasible; False otherwise
     """
     def belongNode(self, state):
         return self.graph.belongNode(state.currentPosition)

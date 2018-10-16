@@ -1,6 +1,5 @@
-import src.Graph as Graph
-import src.State as State
-import math
+import src.Graph as G
+import src.State as S
 
 """
 Class Name: StateSpace
@@ -14,24 +13,30 @@ class StateSpace:
     Checked Exceptions:
     """
     def __init__(self, graphml):
-        self.graph = Graph(graphml)
+        self.graph = G.Graph(graphml)
 
     """
-    Method name:
-    Description:
-    Calling arguments:
-    Return value:
+    Method name:    successors
+    Description:    Calculates the successors of a given state
+    Calling arguments:  state: a specific state
+    Return value:   successorsList: list with all generated successors
+    Checked Exceptions: ValueError: when removing the destination node from the nodesRemaining list,
+                            if this node does not exist on it
     """
     def successors(self, state):
         successorsList = []
 
-        if self.belongNode(state):
-            adjacencyList = self.graph.adjacentNode(state)
+        if self.belongNode(state.currentPosition):
+            adjacencyList = self.graph.adjacentNode(state.currentPosition)
             for node in adjacencyList:
-                newState = State(node[1], [])
+                try:
+                    newState = S.State(node[1], state.nodesRemaining.remove(node[1]))
+                except ValueError:
+                    print("Node " + newState.currentPosition + " is not in nodesRemaining\n")
+                    return
                 acci = "I'm at " + state.currentPosition + "and I go to " + newState.currentPosition
-                costActi = self.calculateDistance(state.currentPosition, newState.currentPosition)
-                successorsList.append([acci, newState, costActi])
+                costActi = node[3]
+                successorsList.append((acci, newState, costActi))
         else:
             print(state + " does not belong to the graph\n")
 
@@ -43,16 +48,3 @@ class StateSpace:
     """
     def belongNode(self, state):
         return self.graph.belongNode(state.currentPosition)
-
-    """
-    Method name:    calculateDistance
-    Description:    Calculation of the straight line distance between two given nodes
-    Calling arguments:  - origin: source node
-                        - destination: target node
-    Return value:   straight line distance between origin and destination
-    """
-    def calculateDistance(self, origin, destination):
-        return math.sqrt(pow(self.graph.positionNode(origin.currentPosition)[0]
-                             - self.graph.positionNode(destination.currentPosition)[0], 2)
-                         + pow(self.graph.positionNode(origin.currentPosition)[1]
-                                   - self.graph.positionNode(destination.currentPosition)[1], 2))

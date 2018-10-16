@@ -40,6 +40,8 @@ class StateSpace:
         else:
             print(state + " does not belong to the graph\n")
 
+        return successorsList
+
     """
     Method name:    belongNode
     Description:    Checks if the state is a feasible state on the current graph

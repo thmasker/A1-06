@@ -21,7 +21,6 @@ class StateSpace:
     Description:
     Calling arguments:
     Return value:
-    Checked Exceptions:
     """
     def successors(self, state):
         successorsList = []
@@ -30,9 +29,11 @@ class StateSpace:
             adjacencyList = self.graph.adjacentNode(state)
             for node in adjacencyList:
                 newState = State(node[1], [])
-                acci = "I'm at " + state.currentPosition + "and I go to " +
+                acci = "I'm at " + state.currentPosition + "and I go to " + newState.currentPosition
                 costActi = self.calculateDistance(state.currentPosition, newState.currentPosition)
                 successorsList.append([acci, newState, costActi])
+        else:
+            print(state + " does not belong to the graph\n")
 
     """
     Method name:    belongNode

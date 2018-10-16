@@ -1,4 +1,6 @@
 import src.Graph as Graph
+import src.State as State
+import math
 
 """
 Class Name: StateSpace
@@ -22,7 +24,15 @@ class StateSpace:
     Checked Exceptions:
     """
     def successors(self, state):
+        successorsList = []
 
+        if self.belongNode(state):
+            adjacencyList = self.graph.adjacentNode(state)
+            for node in adjacencyList:
+                newState = State(node[1], [])
+                acci = "I'm at " + state.currentPosition + "and I go to " +
+                costActi = self.calculateDistance(state.currentPosition, newState.currentPosition)
+                successorsList.append([acci, newState, costActi])
 
     """
     Method name:    belongNode
@@ -32,3 +42,16 @@ class StateSpace:
     """
     def belongNode(self, state):
         return self.graph.belongNode(state.currentPosition)
+
+    """
+    Method name:    calculateDistance
+    Description:    Calculation of the straight line distance between two given nodes
+    Calling arguments:  - origin: source node
+                        - destination: target node
+    Return value:   straight line distance between origin and destination
+    """
+    def calculateDistance(self, origin, destination):
+        return math.sqrt(pow(self.graph.positionNode(origin.currentPosition)[0]
+                             - self.graph.positionNode(destination.currentPosition)[0], 2)
+                         + pow(self.graph.positionNode(origin.currentPosition)[1]
+                                   - self.graph.positionNode(destination.currentPosition)[1], 2))

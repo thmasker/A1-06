@@ -10,6 +10,8 @@
 \usepackage{geometry}
 \usepackage{indentfirst}
 \usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\usepackage{enumitem}
+\usepackage{amsmath}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -70,4 +72,23 @@
 		\lstinputlisting[title={Figure 1.2.2 Result for \textit{nodeid} 764039166 from \textit{Ciudad Real.graphml}}, firstline=16, lastline=17]{"code fragments/results_adjacentNode.txt"}
 		\lstset{style=mystyle}
 		\lstinputlisting[title={Figure 1.2.3 Result for \textit{nodeid} 4928063639 from \textit{Anchuras.graphml}}, firstline=19, lastline=20]{"code fragments/results_adjacentNode.txt"}
+	
+	\section{\textit{Task2}}
+	On this task, we implemented five different classes:
+		\begin{enumerate}[leftmargin=2cm]
+			\item \textit{TreeNode}. This class has not anything special, but the only required attributes: \textit{parent, state, cost of the path, action, current depth} and \textit{f}, which is a random number between 1 and 10 000.
+			\item \textit{State}. As we should not consider that the list of nodes given will be already ordered, we implemented the typical \textit{mergeSort} algorithm to order the elements in an optimized way, which running time in asymptotic notation is:
+				\begin{equation}
+					O(n\log n)
+				\end{equation}
+			\lstset{style=mystyle}
+			\lstinputlisting[title={Figure 2.1 \textit{mergeSort} implementations}, language=python]{"code fragments/mergesort_State.txt"}
+			\item \textit{StateSpace}. This class basically generates the successors for every specific \textit{State} on the problem. Obviously, the main functionality is the function \textit{successors}, which inserts in a list the action to do, its cost, and the new \textit{State} caused for each adjacent node of the current state.
+			\lstset{style=mystyle}
+			\lstinputlisting[title={Figure 2.2 \textit{successors} implementation}, language=python]{"code fragments/successors_StateSpace.txt"}
+			\item \textit{Problem}. In this case, there is not much difficulty, as we only read the initial state of the problem from a \textit{.json} file (thanks to \textit{json} library). We also created the method \textit{isGoal}, which returns \textit{True} if the goal has been reached and \textit{False} otherwise.
+			\item \textit{Frontier}.
+		\end{enumerate}
+	
+
 \end{document}

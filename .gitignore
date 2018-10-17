@@ -6,3 +6,5 @@ doc/*.out
 doc/*synctex.gz
 src/__pycache__/*
 queue-dir-*/*
+doc/*.bbl
+doc/*.blg

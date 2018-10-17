@@ -4,10 +4,10 @@ Description:  Implementation of a tree frontier list
 """
 class Frontier:
     """
-    Method name:    createFrontier
-    Description:  It creates an empty frontier
+    Method name:    __init__
+    Description:  Constructor. It creates an empty frontier
     """
-    def createFrontier(self):
+    def __init__(self):
 
 
     """
@@ -35,3 +35,4 @@ class Frontier:
     Checked Exceptions:
     """
     def isEmpty(self):
+

@@ -20,6 +20,9 @@ class Problem:
         except FileNotFoundError as fnf_error:
             print(fnf_error)
             return
+        except json.decoder.JSONDecodeError:
+            print(jsonPath + " is not a .json file")
+            return
 
         self.StateSpace = SP.StateSpace(rdata["graphmlfile"])
         self.InitState = S.State(rdata["IntSt"]["node"], rdata["IntSt"]["listNodes"])

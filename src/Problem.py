@@ -36,4 +36,5 @@ class Problem:
     def isGoal(self, state):
         if not state.nodesRemaining:
             return True
-        return False
+        else:
+            return False

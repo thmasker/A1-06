@@ -1,3 +1,4 @@
+import blist
 """
 Class Name: Frontier
 Description:  Implementation of a tree frontier list
@@ -8,7 +9,7 @@ class Frontier:
     Description:  Constructor. It creates an empty frontier
     """
     def __init__(self):
-
+        self.queue = blist([])
 
     """
     Method name:    insert
@@ -18,6 +19,7 @@ class Frontier:
     Checked Exceptions:
     """
     def insert(self, treeNode):
+        self.queue.append(treeNode)
 
 
     """
@@ -26,7 +28,16 @@ class Frontier:
     Return value:
     """
     def remove(self):
-
+        try:
+            low = 0
+            for i in range(len(self.queue)):
+                if self.queue[i].f < self.queue[low].f:
+                    low = i
+            item = self.queue.pop(i)
+            return item
+        except IndexError:
+            print()
+            exit()
 
     """
     Method name:    isEmpty
@@ -35,4 +46,5 @@ class Frontier:
     Checked Exceptions:
     """
     def isEmpty(self):
+        return len(self.queue) == blist([])
 

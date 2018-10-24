@@ -1,4 +1,6 @@
-import blist
+from blist import blist
+import psutil
+
 """
 Class Name: Frontier
 Description:  Implementation of a tree frontier list
@@ -9,7 +11,7 @@ class Frontier:
     Description:  Constructor. It creates an empty frontier
     """
     def __init__(self):
-        self.queue = blist.blist([])
+        self.queue = blist([])
 
     """
     Method name:    insert
@@ -19,7 +21,11 @@ class Frontier:
     Checked Exceptions:
     """
     def insert(self, treeNode):
-        self.queue.append(treeNode)
+        if psutil.swap_memory()[3] >= 75:
+            print("Not enough space in memory")
+            raise MemoryError
+        else:
+            self.queue.append(treeNode)
 
     """
     Method name:    remove

@@ -9,7 +9,7 @@ class Frontier:
     Description:  Constructor. It creates an empty frontier
     """
     def __init__(self):
-        self.queue = blist([])
+        self.queue = blist.blist([])
 
     """
     Method name:    insert
@@ -20,7 +20,6 @@ class Frontier:
     """
     def insert(self, treeNode):
         self.queue.append(treeNode)
-
 
     """
     Method name:    remove

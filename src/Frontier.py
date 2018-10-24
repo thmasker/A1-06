@@ -35,4 +35,3 @@ class Frontier:
     Checked Exceptions:
     """
     def isEmpty(self):
-

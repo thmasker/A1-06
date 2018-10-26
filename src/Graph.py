@@ -18,6 +18,9 @@ class Graph:
         except ET.ParseError:
             print('\n' + graphml + ' is not a \".graphml\" or is it corrupted')
             raise SystemExit
+        except FileNotFoundError as fnf_error:
+            print(fnf_error)
+            raise SystemExit
 
         self.ns = {'default': 'http://graphml.graphdrawing.org/xmlns'}  # ns = name space
         self.keys = {} 

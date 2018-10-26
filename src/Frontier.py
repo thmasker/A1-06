@@ -21,7 +21,7 @@ class Frontier:
                             its execution
     """
     def insert(self, treeNode):
-        if psutil.swap_memory()[3] >= 75:
+        if psutil.swap_memory()[3] >= 80:
             print("Not enough space in memory")
             raise MemoryError
         else:
@@ -35,8 +35,8 @@ class Frontier:
     def remove(self):
         try:
             return self.frontier.pop(0)
-        except IndexError:
-            print()
+        except IndexError as index_error:
+            print(index_error)
             raise SystemExit
 
     """
@@ -45,4 +45,7 @@ class Frontier:
     Return value:   True if frontier is empty; False otherwise
     """
     def isEmpty(self):
-        return len(self.frontier) == blist([])
+        if not self.frontier:
+            return True
+        else:
+            return False

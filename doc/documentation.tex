@@ -50,28 +50,28 @@
 	
 	The most complex of the three methods created is \textit{adjacentNode} (see \textit{Figure 1.1}). This method goes through all the node's edges, and appends to the adjacency list those which source node is the \textit{nodeid} we are looking for. Firstly, we append each edge to the adjacency list with their \textit{name} and \textit{length} fields as \textit{SinNombre} and \textit{NULL} respectively. After that we search both fields on the inner data of each edge using the keys dictionary created on the constructor, and we refill both attributes with the real ones. If anyone of them is missing, we'll know that, as it will appear as \textit{SinNombre} or \textit{NULL} in the adjacency list returned.
 	
-	\lstset{style=mystyle}
-	\lstinputlisting[title={Figure 1.1 Method \textit{adjacentNode}},language=python]{"code fragments/adjacentNode.txt"}
-	\lstset{style=mystyle}
-	\lstinputlisting[title={Figure 1.2 Keys dictionary}, firstline=25, lastline=27]{"code fragments/adjacentNode.txt"}
+		\lstset{style=mystyle}
+		\lstinputlisting[title={Figure 1.1 Method \textit{adjacentNode}},language=python]{"code fragments/adjacentNode.txt"}
+		\lstset{style=mystyle}
+		\lstinputlisting[title={Figure 1.2 Keys dictionary}, firstline=25, lastline=27]{"code fragments/adjacentNode.txt"}
 	
 	
 		\subsection{Some results}
 		We coded a script (\textit{tests.py}) to be able to test the results given by the program. We show some of them next:
-		\lstset{style=mystyle}
-		\lstinputlisting[title={Figure 1.1.1 Result for \textit{nodeid} 1851273807 from \textit{Abenójar.graphml}}, firstline=1, lastline=3]{"code fragments/results_adjacentNode.txt"}
-		\lstset{style=mystyle}
-		\lstinputlisting[title={Figure 1.1.2 Result for \textit{nodeid} 764039207 from \textit{Ciudad Real.graphml}}, firstline=5, lastline=7]{"code fragments/results_adjacentNode.txt"}
-		\lstset{style=mystyle}
-		\lstinputlisting[title={Figure 1.1.3 Result for \textit{nodeid} 2012263661 from \textit{Anchuras.graphml}}, firstline=9, lastline=11]{"code fragments/results_adjacentNode.txt"}
+			\lstset{style=mystyle}
+			\lstinputlisting[title={Figure 1.1.1 Result for \textit{nodeid} 1851273807 from \textit{Abenójar.graphml}}, firstline=1, lastline=3]{"code fragments/results_adjacentNode.txt"}
+			\lstset{style=mystyle}
+			\lstinputlisting[title={Figure 1.1.2 Result for \textit{nodeid} 764039207 from \textit{Ciudad Real.graphml}}, firstline=5, lastline=7]{"code fragments/results_adjacentNode.txt"}
+			\lstset{style=mystyle}
+			\lstinputlisting[title={Figure 1.1.3 Result for \textit{nodeid} 2012263661 from \textit{Anchuras.graphml}}, firstline=9, lastline=11]{"code fragments/results_adjacentNode.txt"}
 		
 		\subsection{Timing}
-		\lstset{style=mystyle}
-		\lstinputlisting[title={Figure 1.2.1 Result for \textit{nodeid} 4753226234 from \textit{Abenójar.graphml}}, firstline=13, lastline=14]{"code fragments/results_adjacentNode.txt"}
-		\lstset{style=mystyle}
-		\lstinputlisting[title={Figure 1.2.2 Result for \textit{nodeid} 764039166 from \textit{Ciudad Real.graphml}}, firstline=16, lastline=17]{"code fragments/results_adjacentNode.txt"}
-		\lstset{style=mystyle}
-		\lstinputlisting[title={Figure 1.2.3 Result for \textit{nodeid} 4928063639 from \textit{Anchuras.graphml}}, firstline=19, lastline=20]{"code fragments/results_adjacentNode.txt"}
+			\lstset{style=mystyle}
+			\lstinputlisting[title={Figure 1.2.1 Result for \textit{nodeid} 4753226234 from \textit{Abenójar.graphml}}, firstline=13, lastline=14]{"code fragments/results_adjacentNode.txt"}
+			\lstset{style=mystyle}
+			\lstinputlisting[title={Figure 1.2.2 Result for \textit{nodeid} 764039166 from \textit{Ciudad Real.graphml}}, firstline=16, lastline=17]{"code fragments/results_adjacentNode.txt"}
+			\lstset{style=mystyle}
+			\lstinputlisting[title={Figure 1.2.3 Result for \textit{nodeid} 4928063639 from \textit{Anchuras.graphml}}, firstline=19, lastline=20]{"code fragments/results_adjacentNode.txt"}
 	
 	\section{\textit{Task2}}
 	On this task, we implemented five different classes:
@@ -81,14 +81,30 @@
 				\begin{equation}
 					O(n\log n)
 				\end{equation}
-			\lstset{style=mystyle}
-			\lstinputlisting[title={Figure 2.1 \textit{mergeSort} implementations}, language=python]{"code fragments/mergesort_State.txt"}
+			
+				\lstset{style=mystyle}
+				\lstinputlisting[title={Figure 2.1 \textit{mergeSort} implementations}, language=python]{"code fragments/mergesort_State.txt"}
+			
 			\item \textit{StateSpace}. This class basically generates the successors for every specific \textit{State} on the problem. Obviously, the main functionality is the function \textit{successors}, which inserts in a list the action to do, its cost, and the new \textit{State} caused for each adjacent node of the current state.
-			\lstset{style=mystyle}
-			\lstinputlisting[title={Figure 2.2 \textit{successors} implementation}, language=python]{"code fragments/successors_StateSpace.txt"}
+			
+				\lstset{style=mystyle}
+				\lstinputlisting[title={Figure 2.2 \textit{successors} implementation}, language=python]{"code fragments/successors_StateSpace.txt"}
+			
 			\item \textit{Problem}. In this case, there is not much difficulty, as we only read the initial state of the problem from a \textit{.json} file (thanks to \textit{json} library). We also created the method \textit{isGoal}, which returns \textit{True} if the goal has been reached and \textit{False} otherwise.
-			\item \textit{Frontier}.
+			
+			\item \textit{Frontier}. The key in this class is the implementation of the frontier. To do that, we have used the \href{http://stutzbachenterprises.com/blist/blist.html}{\textit{\underline{blist}}} library as it is a powerful tool to deal with python lists as it makes insertions\footnote{\textit{blist} insertions documentation  \href{http://stutzbachenterprises.com/blist/blist.html#blist.blist.L.insert}{\textit{\underline{here}}}} and removals\footnote{\textit{blist} removals documentation  \href{http://stutzbachenterprises.com/blist/blist.html#blist.blist.L.pop}{\textit{\underline{here}}}} timing
+				\begin{equation}
+					O(n\log n)
+				\end{equation}
+			After performing a test available on the library (\textit{speed\_test.py}) we obtained some charts about the execution time for large amounts of data.
+				
+				
+				\includegraphics[width=0.9\textwidth]{images/absolute_inserts.png}
+				\includegraphics[width=0.9\textwidth, ]{images/relative_inserts.png}
+				
+			In addition, after performing the stress test, we decided to stop the program after reaching the 80\% of the memory utilization using the \href{https://psutil.readthedocs.io/en/latest/}{\textit{\underline{psutil}}} library.
+			
+				\lstset{style=mystyle}
+				\lstinputlisting[title={Figure 2.3 Memory utilization control}, language=python]{"code fragments/frontier_memorylimit.txt"}
 		\end{enumerate}
-	
-
 \end{document}

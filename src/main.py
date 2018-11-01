@@ -31,4 +31,17 @@ if __name__ == '__main__':
 
     jsonPath = input("Enter the path to the .json file: ")
 
-    S.Search(jsonPath, strategy, max_depth, inc_depth, pruning)
+    searching = S.Search(jsonPath, strategy, max_depth, inc_depth, pruning)
+
+    if not searching.solution:
+        print("No solution found")
+    else:
+        file = open("solution.txt", "w+")
+
+        for node in searching.solution:
+            file.write(node.action + "\n")
+
+        file.write("The cost of the path is " + searching.solution[-1].cost + "\n")
+        file.write("The solution was found at depth " + searching.solution[-1].d + "\n")
+
+        print("Solution found!! You can see it at \"solution.txt\"")

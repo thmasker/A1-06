@@ -10,7 +10,6 @@ class StateSpace:
     Method name:    __init__
     Description:  Constructor
     Calling arguments:  graphml: path to any .graphml file
-    Checked Exceptions:
     """
     def __init__(self, graphml):
         self.graph = G.Graph(graphml)
@@ -32,7 +31,7 @@ class StateSpace:
                 try:
                     newState = S.State(node[1], state.nodesRemaining.remove(node[1]))
                 except ValueError:
-                    print("Node " + newState.currentPosition + " is not in nodesRemaining\n")
+                    print("Node " + node[1] + " is not in nodesRemaining\n")
                     return
                 acci = "I'm at " + state.currentPosition + "and I go to " + newState.currentPosition
                 costActi = node[3]

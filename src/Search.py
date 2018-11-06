@@ -76,15 +76,32 @@ class Search:
             return False
 
     """
-    Method name:
-    Description:
-    Calling arguments:
-    Return value:
-    Required Files:
-    Checked Exceptions:
+    Method name:    createTreeNodes
+    Description:    This method generate the children nodes of current_node entered
+    Calling arguments:  - successorsList. List of successors states from the current state
+                        - current_node. Current node the algorithm is in.
+                        - max_depth. Maximum depth at which the algorithm must stop
+                        - strategy. Strategy to follow to generate nodes.
+    Return value:   treeNodesList. List of all children nodes generated
     """
     def createTreeNodes(self, successorsList, current_node, max_depth, strategy):
+        treeNodesList = blist([])
 
+        if current_node.d < max_depth:
+            for successor in successorsList:
+                node = TN.TreeNode(current_node, successor[1], current_node.pathcost + successor[2], successor[0],
+                                   current_node.d + 1)
+
+                if strategy == 'bfs':
+                    node.f = node.d
+                elif (strategy == 'dfs') or (strategy == 'dls') or (strategy == 'dls'):
+                    node.f = -node.d
+                elif strategy == 'ucs':
+                    node.f = node.pathcost
+
+                treeNodesList.append(node)
+
+        return treeNodesList
 
     """
     Method name:    createSolution
@@ -96,7 +113,7 @@ class Search:
         solution = blist([])
 
         while current_node.parent is not None:
-            blist.append(current_node)
+            solution.append(current_node)
             current_node = current_node.parent
 
         return solution.reverse()

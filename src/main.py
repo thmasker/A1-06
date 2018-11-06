@@ -1,4 +1,5 @@
 import src.Search as S
+import os
 
 if __name__ == '__main__':
     try:
@@ -25,7 +26,7 @@ if __name__ == '__main__':
 
     strategy = input("Select the strategy to apply (bfs, dfs, dls, ids, ucs): ")
 
-    if (strategy != 'bfs') or (strategy != 'dfs') or (strategy != 'dls') or (strategy != 'ids') or (strategy != 'ucs'):
+    if (strategy is not 'bfs') or (strategy is not 'dfs') or (strategy is not 'dls') or (strategy is not 'ids') or (strategy is not 'ucs'):
         print("[ValueError] Not valid strategy. Must be \"bfs\", \"dfs\", \"dls\", \"ids\" or \"ucs\"")
         raise SystemExit
 
@@ -46,4 +47,4 @@ if __name__ == '__main__':
 
         file.close()
 
-        print("Solution found!! You can see it at \"solution.txt\"")
+        print("Solution found!! You can see it at " + os.path.abspath("solution.txt"))

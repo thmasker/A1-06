@@ -44,4 +44,6 @@ if __name__ == '__main__':
         file.write("The cost of the path is " + searching.solution[-1].cost + "\n")
         file.write("The solution was found at depth " + searching.solution[-1].d + "\n")
 
+        file.close()
+
         print("Solution found!! You can see it at \"solution.txt\"")

@@ -1,0 +1,258 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key attr.name="ref" attr.type="string" for="edge" id="d14" />
+  <key attr.name="name" attr.type="string" for="edge" id="d13" />
+  <key attr.name="geometry" attr.type="string" for="edge" id="d12" />
+  <key attr.name="length" attr.type="string" for="edge" id="d11" />
+  <key attr.name="oneway" attr.type="string" for="edge" id="d10" />
+  <key attr.name="highway" attr.type="string" for="edge" id="d9" />
+  <key attr.name="bridge" attr.type="string" for="edge" id="d8" />
+  <key attr.name="osmid" attr.type="string" for="edge" id="d7" />
+  <key attr.name="osmid" attr.type="string" for="node" id="d6" />
+  <key attr.name="x" attr.type="string" for="node" id="d5" />
+  <key attr.name="y" attr.type="string" for="node" id="d4" />
+  <key attr.name="streets_per_node" attr.type="string" for="graph" id="d3" />
+  <key attr.name="simplified" attr.type="string" for="graph" id="d2" />
+  <key attr.name="crs" attr.type="string" for="graph" id="d1" />
+  <key attr.name="name" attr.type="string" for="graph" id="d0" />
+  <graph edgedefault="directed">
+    <node id="1">
+      <data key="d4">39.480927</data>
+      <data key="d5">-4.83529</data>
+      <data key="d6">"Oradea"</data>
+    </node>
+    <node id="2">
+      <data key="d4">39.480927</data>
+      <data key="d5">-4.83529</data>
+      <data key="d6">"Zerind"</data>
+    </node>
+    <node id="3">
+      <data key="d4">39.480927</data>
+      <data key="d5">-4.83529</data>
+      <data key="d6">"Arad"</data>
+    </node>
+    <node id="4">
+      <data key="d4">39.480927</data>
+      <data key="d5">-4.83529</data>
+      <data key="d6">"Timisoara"</data>
+    </node>
+    <node id="5">
+      <data key="d4">39.480927</data>
+      <data key="d5">-4.83529</data>
+      <data key="d6">"Lugoj"</data>
+    </node>
+    <node id="6">
+      <data key="d4">39.480927</data>
+      <data key="d5">-4.83529</data>
+      <data key="d6">"Mehadla"</data>
+    </node>
+    <node id="7">
+      <data key="d4">39.480927</data>
+      <data key="d5">-4.83529</data>
+      <data key="d6">"Dobreta"</data>
+    </node>
+    <node id="8">
+      <data key="d4">39.480927</data>
+      <data key="d5">-4.83529</data>
+      <data key="d6">"Siblu"</data>
+    </node>
+    <node id="9">
+      <data key="d4">39.480927</data>
+      <data key="d5">-4.83529</data>
+      <data key="d6">"Rimnicu Vilcea"</data>
+    </node>
+    <node id="10">
+      <data key="d4">39.480927</data>
+      <data key="d5">-4.83529</data>
+      <data key="d6">"Craiova"</data>
+    </node>
+    <node id="11">
+      <data key="d4">39.480927</data>
+      <data key="d5">-4.83529</data>
+      <data key="d6">"Fagaras"</data>
+    </node>
+    <node id="12">
+      <data key="d4">39.480927</data>
+      <data key="d5">-4.83529</data>
+      <data key="d6">"Pitesti"</data>
+    </node>
+    <node id="13">
+      <data key="d4">39.480927</data>
+      <data key="d5">-4.83529</data>
+      <data key="d6">"Glurglu"</data>
+    </node>
+    <node id="14">
+      <data key="d4">39.480927</data>
+      <data key="d5">-4.83529</data>
+      <data key="d6">"Bucharest"</data>
+    </node>
+    <node id="15">
+      <data key="d4">39.480927</data>
+      <data key="d5">-4.83529</data>
+      <data key="d6">"Urziceni"</data>
+    </node>
+    <node id="16">
+      <data key="d4">39.480927</data>
+      <data key="d5">-4.83529</data>
+      <data key="d6">"Hirsova"</data>
+    </node>
+    <node id="17">
+      <data key="d4">39.480927</data>
+      <data key="d5">-4.83529</data>
+      <data key="d6">"Eforie"</data>
+    </node>
+    <node id="18">
+      <data key="d4">39.480927</data>
+      <data key="d5">-4.83529</data>
+      <data key="d6">"Vaslui"</data>
+    </node>
+    <node id="19">
+      <data key="d4">39.480927</data>
+      <data key="d5">-4.83529</data>
+      <data key="d6">"Lasi"</data>
+    </node>
+    <node id="20">
+      <data key="d4">39.480927</data>
+      <data key="d5">-4.83529</data>
+      <data key="d6">"Neamt"</data>
+    </node>	
+    <edge id="1" source="1" target="2">
+      <data key="d11">71</data>
+    </edge>
+    <edge id="3" source="1" target="8">
+      <data key="d11">151</data>
+    </edge>
+    <edge id="5" source="2" target="3">
+      <data key="d11">75</data>
+    </edge>
+    <edge id="2" source="2" target="1">
+      <data key="d11">71</data>
+    </edge>
+    <edge id="6" source="3" target="2">
+      <data key="d11">75</data>
+    </edge>
+    <edge id="7" source="3" target="4">
+      <data key="d11">118</data>
+    </edge>
+    <edge id="8" source="3" target="8">
+      <data key="d11">140</data>
+    </edge>
+    <edge id="9" source="4" target="3">
+      <data key="d11">118</data>
+    </edge>
+    <edge id="10" source="4" target="5">
+      <data key="d11">111</data>
+    </edge>
+    <edge id="11" source="5" target="4">
+      <data key="d11">111</data>
+    </edge>
+    <edge id="12" source="5" target="6">
+      <data key="d11">70</data>
+    </edge>
+    <edge id="13" source="6" target="5">
+      <data key="d11">70</data>
+    </edge>
+    <edge id="14" source="6" target="7">
+      <data key="d11">75</data>
+    </edge>
+    <edge id="15" source="7" target="6">
+      <data key="d11">75</data>
+    </edge>
+    <edge id="16" source="7" target="10">
+      <data key="d11">120</data>
+    </edge>
+    <edge id="17" source="8" target="3">
+      <data key="d11">140</data>
+    </edge>
+    <edge id="18" source="8" target="1">
+      <data key="d11">151</data>
+    </edge>
+    <edge id="19" source="8" target="9">
+      <data key="d11">80</data>
+    </edge>
+    <edge id="20" source="8" target="11">
+      <data key="d11">99</data>
+    </edge>
+    <edge id="21" source="9" target="8">
+      <data key="d11">80</data>
+    </edge>
+    <edge id="22" source="9" target="10">
+      <data key="d11">146</data>
+    </edge>
+    <edge id="23" source="9" target="12">
+      <data key="d11">97</data>
+    </edge>
+    <edge id="24" source="10" target="7">
+      <data key="d11">120</data>
+    </edge>
+    <edge id="25" source="10" target="9">
+      <data key="d11">146</data>
+    </edge>
+    <edge id="26" source="10" target="12">
+      <data key="d11">138</data>
+    </edge>
+    <edge id="27" source="11" target="8">
+      <data key="d11">99</data>
+    </edge>
+    <edge id="28" source="11" target="14">
+      <data key="d11">211</data>
+    </edge>
+    <edge id="29" source="12" target="9">
+      <data key="d11">97</data>
+    </edge>
+    <edge id="30" source="12" target="10">
+      <data key="d11">138</data>
+    </edge>
+    <edge id="31" source="12" target="14">
+      <data key="d11">101</data>
+    </edge>
+    <edge id="32" source="13" target="14">
+      <data key="d11">90</data>
+    </edge>
+    <edge id="33" source="14" target="13">
+      <data key="d11">90</data>
+    </edge>
+    <edge id="34" source="14" target="11">
+      <data key="d11">211</data>
+    </edge>
+    <edge id="35" source="14" target="12">
+      <data key="d11">101</data>
+    </edge>
+    <edge id="36" source="14" target="15">
+      <data key="d11">85</data>
+    </edge>
+    <edge id="37" source="15" target="14">
+      <data key="d11">85</data>
+    </edge>
+    <edge id="38" source="15" target="16">
+      <data key="d11">98</data>
+    </edge>
+    <edge id="39" source="15" target="18">
+      <data key="d11">142</data>
+    </edge>
+    <edge id="40" source="16" target="15">
+      <data key="d11">98</data>
+    </edge>
+    <edge id="41" source="16" target="17">
+      <data key="d11">86</data>
+    </edge>
+    <edge id="42" source="17" target="16">
+      <data key="d11">86</data>
+    </edge>
+    <edge id="43" source="18" target="15">
+      <data key="d11">142</data>
+    </edge>
+    <edge id="44" source="18" target="19">
+      <data key="d11">92</data>
+    </edge>
+    <edge id="45" source="19" target="18">
+      <data key="d11">92</data>
+    </edge>
+    <edge id="46" source="19" target="20">
+      <data key="d11">87</data>
+    </edge>
+    <edge id="47" source="20" target="19">
+      <data key="d11">87</data>
+    </edge>
+  </graph>
+</graphml>

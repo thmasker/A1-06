@@ -25,7 +25,7 @@ class StateSpace:
     def successors(self, state):
         successorsList = []
 
-        if self.belongNode(state.currentPosition):
+        if self.belongNode(state):
             adjacencyList = self.graph.adjacentNode(state.currentPosition)
             for node in adjacencyList:
                 try:

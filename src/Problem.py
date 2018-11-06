@@ -19,10 +19,10 @@ class Problem:
                 rdata = json.load(rstate)
         except FileNotFoundError as fnf_error:
             print(fnf_error)
-            return
+            raise SystemExit
         except json.decoder.JSONDecodeError:
             print(jsonPath + " is not a .json file")
-            return
+            raise SystemExit
 
         self.StateSpace = SP.StateSpace(rdata["graphmlfile"])
         self.InitState = S.State(rdata["IntSt"]["node"], rdata["IntSt"]["listNodes"])

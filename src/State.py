@@ -14,7 +14,11 @@ class State:
     def __init__(self, currentPosition, nodesRemaining):
         self.currentPosition = currentPosition
         self.nodesRemaining = nodesRemaining
-        self.mergesortNodes(self.nodesRemaining, 0, len(self.nodesRemaining) - 1)
+        try:
+            self.mergesortNodes(self.nodesRemaining, 0, len(self.nodesRemaining) - 1)
+        except TypeError:
+            pass
+
         self.md5checksum = hashlib.md5((str(self.currentPosition) + ",".join(str(self.nodesRemaining))).encode())
 
     """

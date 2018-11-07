@@ -26,7 +26,8 @@ if __name__ == '__main__':
 
     strategy = input("Select the strategy to apply (bfs, dfs, dls, ids, ucs): ")
 
-    if (strategy is not 'bfs') or (strategy is not 'dfs') or (strategy is not 'dls') or (strategy is not 'ids') or (strategy is not 'ucs'):
+    if (strategy != 'bfs') and (strategy != 'dfs') and (strategy != 'dls') and (strategy != 'ids')\
+            and (strategy != 'ucs'):
         print("[ValueError] Not valid strategy. Must be \"bfs\", \"dfs\", \"dls\", \"ids\" or \"ucs\"")
         raise SystemExit
 

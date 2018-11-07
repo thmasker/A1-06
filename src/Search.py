@@ -14,7 +14,10 @@ class Search:
     """
     def __init__(self, jsonPath, strategy, max_depth, inc_depth, pruning):
         self.problem = P.Problem(jsonPath)
-        self.solution = self.search(self.problem, strategy, max_depth, inc_depth, pruning)
+        if strategy == 'ids':
+            self.solution = self.search(self.problem, strategy, max_depth, inc_depth, pruning)
+        else:
+            self.solution = self.search(self.problem, strategy, max_depth, max_depth, pruning)
 
     """
     Method name:    search
@@ -90,7 +93,7 @@ class Search:
         if current_node.d < max_depth:
             for successor in successorsList:
                 node = TN.TreeNode(current_node, successor[1], current_node.pathcost + successor[2], successor[0],
-                                   current_node.d + 1)
+                                  current_node.d + 1)
 
                 if strategy == 'bfs':
                     node.f = node.d

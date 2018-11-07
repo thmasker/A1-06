@@ -54,10 +54,14 @@ class Search:
         initial_node = TN.TreeNode(None, self.problem.InitState, 0, None, 0)
         initial_node.f = 0
 
+        solution = False
+
+        if problem.isGoal(initial_node.state):
+            solution = True
+            current_node = initial_node
+
         # With pruning we should prove initial node is not in the frontier before inserting
         frontier.insert(initial_node)
-
-        solution = False
 
         while not solution and not frontier.isEmpty():
             current_node = frontier.remove()
@@ -92,7 +96,7 @@ class Search:
 
         if current_node.d < max_depth:
             for successor in successorsList:
-                node = TN.TreeNode(current_node, successor[1], current_node.pathcost + successor[2], successor[0],
+                node = TN.TreeNode(current_node, successor[1], current_node.pathcost + int(successor[2]), successor[0],
                                   current_node.d + 1)
 
                 if strategy == 'bfs':
@@ -115,8 +119,13 @@ class Search:
     def createSolution(self, current_node):
         solution = blist([])
 
+        if current_node.parent is None:
+            solution.append(current_node)
+
         while current_node.parent is not None:
             solution.append(current_node)
             current_node = current_node.parent
 
-        return solution.reverse()
+        solution.reverse()
+
+        return solution

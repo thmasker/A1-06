@@ -38,14 +38,17 @@ if __name__ == '__main__':
     if not searching.solution:
         print("No solution found")
     else:
-        file = open("solution.txt", "w+")
+        file = open("../solution.txt", "w+")
 
         for node in searching.solution:
-            file.write(node.action + "\n")
+            if node.parent is None:
+                file.write("You already are in the goal node!!!\n")
+            else:
+                file.write(node.action + "\n")
 
-        file.write("The cost of the path is " + searching.solution[-1].cost + "\n")
-        file.write("The solution was found at depth " + searching.solution[-1].d + "\n")
+        file.write("\nThe cost of the path is " + str(searching.solution[-1].pathcost) + "\n")
+        file.write("The solution was found at depth " + str(searching.solution[-1].d))
 
         file.close()
 
-        print("Solution found!! You can see it at " + os.path.abspath("solution.txt"))
+        print("Solution found!! You can see it at " + os.path.abspath("../solution.txt"))

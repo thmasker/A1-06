@@ -27,17 +27,19 @@ class StateSpace:
 
         if self.belongNode(state):
             adjacencyList = self.graph.adjacentNode(state.currentPosition)
+
             for node in adjacencyList:
+                newNodesRemaining = state.nodesRemaining.copy()
+
                 try:
-                    newNodesRemaining = state.nodesRemaining.copy()
                     newNodesRemaining.remove(node[1])
-                    newState = S.State(node[1], newNodesRemaining)
                 except ValueError:
-                    print("Node " + node[1] + " is not in nodesRemaining\n")
-                    return
-                acci = "I'm at " + state.currentPosition + "and I go to " + newState.currentPosition
-                costActi = node[3]
-                successorsList.append((acci, newState, costActi))
+                    pass
+                else:
+                    newState = S.State(node[1], newNodesRemaining)
+                    acci = "I'm at " + state.currentPosition + "and I go to " + newState.currentPosition
+                    costActi = node[3]
+                    successorsList.append((acci, newState, costActi))
         else:
             print(state + " does not belong to the graph\n")
 

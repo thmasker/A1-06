@@ -29,7 +29,9 @@ class StateSpace:
             adjacencyList = self.graph.adjacentNode(state.currentPosition)
             for node in adjacencyList:
                 try:
-                    newState = S.State(node[1], state.nodesRemaining.remove(node[1]))
+                    newNodesRemaining = state.nodesRemaining.copy()
+                    newNodesRemaining.remove(node[1])
+                    newState = S.State(node[1], newNodesRemaining)
                 except ValueError:
                     print("Node " + node[1] + " is not in nodesRemaining\n")
                     return

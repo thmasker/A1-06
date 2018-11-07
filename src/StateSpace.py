@@ -34,12 +34,12 @@ class StateSpace:
                 try:
                     newNodesRemaining.remove(node[1])
                 except ValueError:
-                    pass
-                else:
-                    newState = S.State(node[1], newNodesRemaining)
-                    acci = "I'm at " + state.currentPosition + "and I go to " + newState.currentPosition
-                    costActi = node[3]
-                    successorsList.append((acci, newState, costActi))
+                   pass
+
+                newState = S.State(node[1], newNodesRemaining)
+                acci = "I'm at " + state.currentPosition + " and I go to " + newState.currentPosition
+                costActi = node[3]
+                successorsList.append((acci, newState, costActi))
         else:
             print(state + " does not belong to the graph\n")
 

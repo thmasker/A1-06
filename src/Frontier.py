@@ -25,7 +25,7 @@ class Frontier:
             print("Not enough space in memory")
             raise MemoryError
         else:
-            self.frontier.insert(treeNode.f, treeNode)
+            self.frontier.append(treeNode)
 
     """
     Method name:    remove
@@ -34,7 +34,11 @@ class Frontier:
     """
     def remove(self):
         try:
-            return self.frontier.pop(0)
+            low = 0
+            for i in range(len(self.frontier)):
+                if self.frontier[i].f < self.frontier[low].f:
+                    low = i
+            return self.frontier.pop(low)
         except IndexError as index_error:
             print(index_error)
             raise SystemExit

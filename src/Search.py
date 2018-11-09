@@ -14,10 +14,7 @@ class Search:
     """
     def __init__(self, jsonPath, strategy, max_depth, inc_depth, pruning):
         self.problem = P.Problem(jsonPath)
-        if strategy == 'ids':
-            self.solution = self.search(self.problem, strategy, max_depth, inc_depth, pruning)
-        else:
-            self.solution = self.search(self.problem, strategy, max_depth, max_depth, pruning)
+        self.solution = self.search(self.problem, strategy, max_depth, inc_depth, pruning)
 
     """
     Method name:    search
@@ -36,9 +33,10 @@ class Search:
         while not solution and (current_depth <= max_depth):
             if strategy == 'ids':
                 solution = self.fenced_search(problem, strategy, current_depth, pruning)
+                current_depth += inc_depth
             else:
                 solution = self.fenced_search(problem, strategy, max_depth, pruning)
-            current_depth += inc_depth
+                current_depth += max_depth
 
         return solution
 

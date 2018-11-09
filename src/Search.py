@@ -80,6 +80,7 @@ class Search:
                 # With pruning we should prove every node in treenodesList is not in the frontier before inserting,
                 #   also take into account if it is in the list, the f value...i
                 for node in treenodesList:
+                    
                     if pruning:
                         if node.state.md5checksum not in visitedList:
                             found = False
@@ -96,7 +97,6 @@ class Search:
                                     frontier.insert(node)
                     else:
                         frontier.insert(node)
-
         if solution:
             return self.createSolution(current_node)
         else:

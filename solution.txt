@@ -1,0 +1,6 @@
+I'm at 3 and I go to 8
+I'm at 8 and I go to 11
+I'm at 11 and I go to 14
+
+The cost of the path is 450
+The solution was found at depth 3

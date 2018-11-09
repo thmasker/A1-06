@@ -38,7 +38,7 @@ if __name__ == '__main__':
     if not searching.solution:
         print("No solution found")
     else:
-        file = open("../solution.txt", "w+")
+        file = open("solution.txt", "w+")
 
         for node in searching.solution:
             if node.parent is None:

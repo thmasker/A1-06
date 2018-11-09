@@ -1,6 +1,12 @@
 I'm at 3 and I go to 8
 I'm at 8 and I go to 11
 I'm at 11 and I go to 14
+I'm at 14 and I go to 13
+I'm at 13 and I go to 14
+I'm at 14 and I go to 15
+I'm at 15 and I go to 18
+I'm at 18 and I go to 19
+I'm at 19 and I go to 20
 
-The cost of the path is 450
-The solution was found at depth 3
+The cost of the path is 1036.0
+The solution was found at depth 9

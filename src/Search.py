@@ -52,6 +52,8 @@ class Search:
     Return value:   solution. Solution found. If the algorithm did not find solution it returns False
     """
     def fenced_search(self, problem, strategy, max_depth, pruning):
+        visitedList = []
+
         frontier = F.Frontier()
 
         initial_node = TN.TreeNode(None, self.problem.InitState, 0, None, 0)
@@ -63,17 +65,11 @@ class Search:
             solution = True
             current_node = initial_node
 
-        # Controlling if the initial node is already in the frontier before inserting
-        if pruning:
-            try:
-                frontier.frontier.index(initial_node)
-            except ValueError:
-                frontier.insert(initial_node)
-        else:
-            frontier.insert(initial_node)
+        frontier.insert(initial_node)
 
         while not solution and not frontier.isEmpty():
             current_node = frontier.remove()
+            visitedList.append(current_node)
 
             if problem.isGoal(current_node.state):
                 solution = True
@@ -86,20 +82,24 @@ class Search:
                 for node in treenodesList:
                     if pruning:
                         try:
-                            position = frontier.frontier.index(node)
+                            visitedList.index(node.state)
                         except ValueError:
-                            frontier.insert(node)
-                        else:
-                            if abs(frontier.frontier[position].f) > abs(node.f):
-                                frontier.frontier.pop(position)
+                            try:
+                                if x in frontier:frontier
+                                position = frontier.frontier.index(node)
+                            except ValueError:
                                 frontier.insert(node)
+                            else:
+                                if abs(visitedList[position].f) > abs(node.f):
+                                    frontier.frontier.pop(position)
+                                    frontier.insert(node)
                     else:
                         frontier.insert(node)
 
         if solution:
             return self.createSolution(current_node)
         else:
-            return False
+            return False   
 
     """
     Method name:    createTreeNodes
@@ -115,7 +115,7 @@ class Search:
 
         if current_node.d < max_depth:
             for successor in successorsList:
-                node = TN.TreeNode(current_node, successor[1], current_node.pathcost + int(successor[2]), successor[0],
+                node = TN.TreeNode(current_node, successor[1], current_node.pathcost + float(successor[2]), successor[0],
                                   current_node.d + 1)
 
                 if strategy == 'bfs':

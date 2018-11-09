@@ -1,5 +1,6 @@
 import src.Search as S
 import os
+import timeit
 
 if __name__ == '__main__':
     try:
@@ -33,7 +34,9 @@ if __name__ == '__main__':
 
     jsonPath = input("Enter the path to the .json file: ")
 
+    start = timeit.default_timer()
     searching = S.Search(jsonPath, strategy, max_depth, inc_depth, pruning)
+    print(timeit.default_timer() - start)
 
     if not searching.solution:
         print("No solution found")

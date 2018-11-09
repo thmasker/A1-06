@@ -34,7 +34,10 @@ class Search:
         solution = None
 
         while not solution and (current_depth <= max_depth):
-            solution = self.fenced_search(problem, strategy, max_depth, pruning)
+            if strategy == 'ids':
+                solution = self.fenced_search(problem, strategy, current_depth, pruning)
+            else:
+                solution = self.fenced_search(problem, strategy, max_depth, pruning)
             current_depth += inc_depth
 
         return solution
@@ -60,8 +63,14 @@ class Search:
             solution = True
             current_node = initial_node
 
-        # With pruning we should prove initial node is not in the frontier before inserting
-        frontier.insert(initial_node)
+        # Controlling if the initial node is already in the frontier before inserting
+        if pruning:
+            try:
+                frontier.frontier.index(initial_node)
+            except ValueError:
+                frontier.insert(initial_node)
+        else:
+            frontier.insert(initial_node)
 
         while not solution and not frontier.isEmpty():
             current_node = frontier.remove()
@@ -75,7 +84,17 @@ class Search:
                 # With pruning we should prove every node in treenodesList is not in the frontier before inserting,
                 #   also take into account if it is in the list, the f value...
                 for node in treenodesList:
-                    frontier.insert(node)
+                    if pruning:
+                        try:
+                            position = frontier.frontier.index(node)
+                        except ValueError:
+                            frontier.insert(node)
+                        else:
+                            if abs(frontier.frontier[position].f) > abs(node.f):
+                                frontier.frontier.pop(position)
+                                frontier.insert(node)
+                    else:
+                        frontier.insert(node)
 
         if solution:
             return self.createSolution(current_node)

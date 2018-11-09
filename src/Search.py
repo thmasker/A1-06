@@ -79,43 +79,20 @@ class Search:
 
                 # With pruning we should prove every node in treenodesList is not in the frontier before inserting,
                 #   also take into account if it is in the list, the f value...i
-
-
-
                 for node in treenodesList:
                     if pruning:
                         if node.state.md5checksum not in visitedList:
                             found = False
-                            for i in range(len(frontier.frontier):
+                            for i in range(len(frontier.frontier)):
                                 if frontier.frontier[i].state.md5checksum == node.state.md5checksum:
                                     found = True
                                     break
-                                
-                            if found and abs(frontier.frontier[i].f) > abs(node.f):
-                                frontier.frontier.pop(i)
-                                frontier.insert(node)
-                        else:
 
-
-                            
-
-
-                for node in treenodesList:
-                    if pruning:
-                        try:
-                            visitedList.index(node.state)
-                        except ValueError:
-                            for x in frontier.frontier:
-                                if x.state.md5checksum == node.state.md5checksum:
-                                    if abs(visitedList[position].f) > abs(node.f):
-                                        frontier.frontier.pop(position)
-                                        frontier.insert(node)
-    
-                                position = frontier.frontier.index(node)
+                            if not found:
                                 frontier.insert(node)
                             else:
-                                if abs(visitedList[position].f) > abs(node.f):
-                                    frontier.frontier.pop(position)
+                                if abs(frontier.frontier[i].f) > abs(node.f):
+                                    frontier.frontier.pop(i)
                                     frontier.insert(node)
                     else:
                         frontier.insert(node)

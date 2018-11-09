@@ -36,10 +36,10 @@ if __name__ == '__main__':
 
     start = timeit.default_timer()
     searching = S.Search(jsonPath, strategy, max_depth, inc_depth, pruning)
-    print(timeit.default_timer() - start)
+    print("Execution time: " + str(timeit.default_timer() - start) + "\n")
 
     if not searching.solution:
-        print("No solution found")
+        print("\nNo solution found")
     else:
         file = open("solution.txt", "w+")
 
@@ -54,4 +54,4 @@ if __name__ == '__main__':
 
         file.close()
 
-        print("Solution found!! You can see it at " + os.path.abspath("../solution.txt"))
+        print("\nSolution found!! You can see it at " + os.path.abspath("../solution.txt"))

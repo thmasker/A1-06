@@ -121,7 +121,7 @@ class Search:
 
                 if strategy == 'bfs':
                     node.f = node.d
-                elif (strategy == 'dfs') or (strategy == 'dls') or (strategy == 'dls'):
+                elif (strategy == 'dfs') or (strategy == 'dls') or (strategy == 'ids'):
                     node.f = -node.d
                 elif strategy == 'ucs':
                     node.f = node.pathcost

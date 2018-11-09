@@ -1,0 +1,27 @@
+Max depth: 10
+
+Without pruning:
+	BFS:
+		Execution time: 72.3842867 seconds
+	DFS:
+		Execution time: 74.02109329999999 seconds
+	DLS:
+		Execution time: 78.46946439999999 seconds
+	IDS:
+		Increment of depth: 2
+		Execution time: 78.1188335 seconds
+	UCS:
+		Execution time: 37.7549191 seconds
+
+With pruning:
+	BFS:
+		Execution time: 0.0055617999999999996 seconds
+	DFS:
+		Execution time: 0.0054572 seconds
+	DLS:
+		Execution time: 0.0057617 seconds
+	IDS:
+		Increment of depth: 2
+		Execution time: 0.0139816 seconds
+	UCS:
+		Execution time: 0.0052702999999999995 seconds

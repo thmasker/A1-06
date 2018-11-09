@@ -1,0 +1,23 @@
+def __init__(self, jsonPath):
+	try:
+		with open(jsonPath, "r") as rstate:
+			rdata = json.load(rstate)
+	except FileNotFoundError as fnf_error:
+		print(fnf_error)
+		raise SystemExit
+	except json.decoder.JSONDecodeError:
+		print(jsonPath + " is not a .json file")
+		raise SystemExit
+
+	self.StateSpace = SP.StateSpace(rdata["graphmlfile"])
+	self.InitState = S.State(rdata["IntSt"]["node"], rdata["IntSt"]["listNodes"])
+
+def isGoal(self, state):
+	if len(state.nodesRemaining) == 1:
+		if state.nodesRemaining[0] == self.InitState.currentPosition:
+			return True
+
+	if not state.nodesRemaining:
+		return True
+	else:
+		return False

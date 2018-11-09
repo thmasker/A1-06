@@ -51,60 +51,131 @@
 	The most complex of the three methods created is \textit{adjacentNode} (see \textit{Figure 1.1}). This method goes through all the node's edges, and appends to the adjacency list those which source node is the \textit{nodeid} we are looking for. Firstly, we append each edge to the adjacency list with their \textit{name} and \textit{length} fields as \textit{SinNombre} and \textit{NULL} respectively. After that we search both fields on the inner data of each edge using the keys dictionary created on the constructor, and we refill both attributes with the real ones. If anyone of them is missing, we'll know that, as it will appear as \textit{SinNombre} or \textit{NULL} in the adjacency list returned.
 	
 		\lstset{style=mystyle}
-		\lstinputlisting[title={Figure 1.1 Method \textit{adjacentNode}},language=python]{"code fragments/adjacentNode.txt"}
+		\lstinputlisting[title={Code 1.1 Method \textit{adjacentNode}},language=python]{"code fragments/adjacentNode.txt"}
 		\lstset{style=mystyle}
-		\lstinputlisting[title={Figure 1.2 Keys dictionary}, firstline=25, lastline=27]{"code fragments/adjacentNode.txt"}
+		\lstinputlisting[title={Code 1.2 Keys dictionary}, firstline=25, lastline=27]{"code fragments/adjacentNode.txt"}
 	
 	
 		\subsection{Some results}
 		We coded a script (\textit{tests.py}) to be able to test the results given by the program. We show some of them next:
 			\lstset{style=mystyle}
-			\lstinputlisting[title={Figure 1.1.1 Result for \textit{nodeid} 1851273807 from \textit{Abenójar.graphml}}, firstline=1, lastline=3]{"code fragments/results_adjacentNode.txt"}
+			\lstinputlisting[title={Results 1.1.1 Result for \textit{nodeid} 1851273807 from \textit{Abenójar.graphml}}, firstline=1, lastline=3]{"code fragments/results_adjacentNode.txt"}
 			\lstset{style=mystyle}
-			\lstinputlisting[title={Figure 1.1.2 Result for \textit{nodeid} 764039207 from \textit{Ciudad Real.graphml}}, firstline=5, lastline=7]{"code fragments/results_adjacentNode.txt"}
+			\lstinputlisting[title={Results 1.1.2 Result for \textit{nodeid} 764039207 from \textit{Ciudad Real.graphml}}, firstline=5, lastline=7]{"code fragments/results_adjacentNode.txt"}
 			\lstset{style=mystyle}
-			\lstinputlisting[title={Figure 1.1.3 Result for \textit{nodeid} 2012263661 from \textit{Anchuras.graphml}}, firstline=9, lastline=11]{"code fragments/results_adjacentNode.txt"}
+			\lstinputlisting[title={Results 1.1.3 Result for \textit{nodeid} 2012263661 from \textit{Anchuras.graphml}}, firstline=9, lastline=11]{"code fragments/results_adjacentNode.txt"}
 		
 		\subsection{Timing}
 			\lstset{style=mystyle}
-			\lstinputlisting[title={Figure 1.2.1 Result for \textit{nodeid} 4753226234 from \textit{Abenójar.graphml}}, firstline=13, lastline=14]{"code fragments/results_adjacentNode.txt"}
+			\lstinputlisting[title={Timing 1.2.1 Result for \textit{nodeid} 4753226234 from \textit{Abenójar.graphml}}, firstline=13, lastline=14]{"code fragments/results_adjacentNode.txt"}
 			\lstset{style=mystyle}
-			\lstinputlisting[title={Figure 1.2.2 Result for \textit{nodeid} 764039166 from \textit{Ciudad Real.graphml}}, firstline=16, lastline=17]{"code fragments/results_adjacentNode.txt"}
+			\lstinputlisting[title={Timing 1.2.2 Result for \textit{nodeid} 764039166 from \textit{Ciudad Real.graphml}}, firstline=16, lastline=17]{"code fragments/results_adjacentNode.txt"}
 			\lstset{style=mystyle}
-			\lstinputlisting[title={Figure 1.2.3 Result for \textit{nodeid} 4928063639 from \textit{Anchuras.graphml}}, firstline=19, lastline=20]{"code fragments/results_adjacentNode.txt"}
+			\lstinputlisting[title={Timing 1.2.3 Result for \textit{nodeid} 4928063639 from \textit{Anchuras.graphml}}, firstline=19, lastline=20]{"code fragments/results_adjacentNode.txt"}
 	
 	\section{\textit{Task2}}
 	On this task, we implemented five different classes:
 		\begin{enumerate}[leftmargin=2cm]
-			\item \textit{TreeNode}. This class has not anything special, but the only required attributes: \textit{parent, state, cost of the path, action, current depth} and \textit{f}, which is a random number between 1 and 10 000.
-			\item \textit{State}. As we should not consider that the list of nodes given will be already ordered, we implemented the typical \textit{mergeSort} algorithm to order the elements in an optimized way, which running time in asymptotic notation is:
-				\begin{equation}
-					O(n\log n)
-				\end{equation}
+			\item \textbf{\textit{TreeNode}}. This class has not anything special, but the only required attributes: \textit{parent, state, cost of the path, action, current depth} and \textit{f}, which is a random number between 1 and 10 000.
 			
 				\lstset{style=mystyle}
-				\lstinputlisting[title={Figure 2.1 \textit{mergeSort} implementations}, language=python]{"code fragments/mergesort_State.txt"}
+				\lstinputlisting[title={Code 2.1 \textit{TreeNode} implementation}, language=python]{"code fragments/TreeNode.txt"}
 			
-			\item \textit{StateSpace}. This class basically generates the successors for every specific \textit{State} on the problem. Obviously, the main functionality is the function \textit{successors}, which inserts in a list the action to do, its cost, and the new \textit{State} caused for each adjacent node of the current state.
+			\item \textbf{\textit{State}}. In this class we simply create objects with the required attributes: \textit{current position, nodes remaining} and its \textit{md5} identifier.
 			
 				\lstset{style=mystyle}
-				\lstinputlisting[title={Figure 2.2 \textit{successors} implementation}, language=python]{"code fragments/successors_StateSpace.txt"}
+				\lstinputlisting[title={Code 2.2 \textit{State} implementation}, language=python]{"code fragments/State.txt"}
+				
+			\item \textbf{\textit{StateSpace}}. This class basically generates the successors for every specific \textit{State} on the problem. Obviously, the main functionality is the function \textit{successors}, which inserts in a list the action to do, its cost, and the new \textit{State} caused for each adjacent node of the current state.
 			
-			\item \textit{Problem}. In this case, there is not much difficulty, as we only read the initial state of the problem from a \textit{.json} file (thanks to \textit{json} library). We also created the method \textit{isGoal}, which returns \textit{True} if the goal has been reached and \textit{False} otherwise.
+				\lstset{style=mystyle}
+				\lstinputlisting[title={Code 2.3 \textit{successors} implementation}, language=python]{"code fragments/successors_StateSpace.txt"}
 			
-			\item \textit{Frontier}. The key in this class is the implementation of the frontier. To do that, we have used the \href{http://stutzbachenterprises.com/blist/blist.html}{\textit{\underline{blist}}} library as it is a powerful tool to deal with python lists as it makes insertions\footnote{\textit{blist} insertions documentation  \href{http://stutzbachenterprises.com/blist/blist.html#blist.blist.L.insert}{\textit{\underline{here}}}} and removals\footnote{\textit{blist} removals documentation  \href{http://stutzbachenterprises.com/blist/blist.html#blist.blist.L.pop}{\textit{\underline{here}}}} timing
+			\item \textbf{\textit{Problem}}. In this case, there is not much difficulty, as we only read the initial state of the problem from a \textit{.json} file (thanks to \textit{json} library). We also created the method \textit{isGoal}, which returns \textit{True} if the goal has been reached and \textit{False} otherwise.
+			
+				\lstset{style=mystyle}
+				\lstinputlisting[title={Code 2.4 \textit{.json} file reading}, firstline=1, lastline=13, language=python]{"code fragments/Problem.txt"}
+				
+				\lstset{style=mystyle}
+				\lstinputlisting[title={Code 2.5 \textit{isGoal} implementation}, firstline=15, lastline=23, language=python]{"code fragments/Problem.txt"}
+			
+			\item \textbf{\textit{Frontier}}. The key in this class is the implementation of the frontier. To do that, we have used the \href{http://stutzbachenterprises.com/blist/blist.html}{\textit{\underline{blist}}} library as it is a powerful tool to deal with python lists as it makes insertions\footnote{\textit{blist} insertions documentation  \href{http://stutzbachenterprises.com/blist/blist.html#blist.blist.L.insert}{\textit{\underline{here}}}} and removals\footnote{\textit{blist} removals documentation  \href{http://stutzbachenterprises.com/blist/blist.html#blist.blist.L.pop}{\textit{\underline{here}}}} timing
 				\begin{equation}
 					O(\log n)
 				\end{equation}
-			After performing a test available on the library (\textit{speed\_test.py}) we obtained some charts about the execution time for large amounts of data.
+			
+			\lstset{style=mystyle}
+			\lstinputlisting[title={Code 2.6 \textit{Frontier} initialization}, firstline=1, lastline=2, language=python]{"code fragments/Frontier.txt"}
+			\lstset{style=mystyle}
+			\lstinputlisting[title={Code 2.7 \textit{insert} implementation}, firstline=4, lastline=9, language=python]{"code fragments/Frontier.txt"}
+			\lstset{style=mystyle}
+			\lstinputlisting[title={Code 2.8 \textit{remove} Implementation}, firstline=11, lastline=20, language=python]{"code fragments/Frontier.txt"}
+			\lstset{style=mystyle}
+			\lstinputlisting[title={Code 2.9 \textit{isEmpty} Implementation}, firstline=22, lastline=26, language=python]{"code fragments/Frontier.txt"}
+			
+			After performing a test available on the library (\textit{speed\_test.py}) we obtained some charts about the execution time for large amounts of data (see \textit{Figures 1} and \textit{2}).
 				
-				
-				\includegraphics[width=0.9\textwidth]{images/absolute_inserts.png}
-				\includegraphics[width=0.9\textwidth, ]{images/relative_inserts.png}
+				\begin{figure}[!]
+					\includegraphics[width=0.9\textwidth]{images/absolute_inserts.png}
+					\caption{Execution time comparison between python list and \textit{blist}}
+					\includegraphics[width=0.9\textwidth, ]{images/relative_inserts.png}
+					\caption{Relative execution time of \textit{blist} compared with python lists}
+				\end{figure}
 				
 			In addition, after performing the stress test, we decided to stop the program after reaching the 80\% of the memory utilization using the \href{https://psutil.readthedocs.io/en/latest/}{\textit{\underline{psutil}}} library.
 			
 				\lstset{style=mystyle}
-				\lstinputlisting[title={Figure 2.3 Memory utilization control}, language=python]{"code fragments/frontier_memorylimit.txt"}
+				\lstinputlisting[title={Code 2.10 Memory utilization control}, language=python]{"code fragments/frontier_memorylimit.txt"}
 		\end{enumerate}
+	
+	\section{\textit{Task3}}
+	This time we have implemented the search algorithms, following the pseudocode that was given to us. Thus, there is a class called \textit{Search}, in which we organize the search in three main parts:
+		\begin{enumerate}
+			\item \textbf{Search creation}. During this first part, we create a \textit{Search} object and called the function search, which will be responsible for starting the search strictly speaking.
+			
+				\lstset{style=mystyle}
+				\lstinputlisting[title={Code 3.1 \textit{Search} constructor}, firstline=1, lastline=3, language=python]{"code fragments/Search.txt"}
+				\lstset{style=mystyle}
+				\lstinputlisting[title={Code 3.2 \textit{search} implementation}, firstline=5, lastline=17, language=python]{"code fragments/Search.txt"}
+				
+				As you can appreciate, we differenciate between the execution of \textit{Iterative Deepening Search} and the rest, because depending on this we set the increment in depth as the one entered by the user or as the maximum depth chosen, to make the algorithm iterate only once.
+				
+			\item \textbf{Search itself}. This operation starts whenever the method \textit{search} calls \textit{fenced\_search}. In this case, we create the initial node of the tree from the initial state given by the problem, setting its \textit{f} value as 0. After that, we check that the algorithm has not reached the goal state by calling the function in \textit{Code 2.5}. Then, while we have no solution and the frontier is not empty, we keep searching for the solution, by generating the successor nodes of the current node (see \textit{Code 2.3}) and their corresponding tree nodes (see \textit{Code 3.5}), which will set the \textit{f} value of each node depending on the algorithm executed (depth for \textit{BFS}; -depth for \textit{DFS, DLS} and \textit{IDS}; and the cost of the path for \textit{UCS}).
+			Once we have all the new successor nodes, for every one of them we check if it is already in the frontier (see \textit{Code 3.3}):
+				
+				\lstset{style=mystyle}
+				\lstinputlisting[title={Code 3.3 Frontier check}, firstline=47, lastline=62, language=python]{"code fragments/Search.txt"}
+				
+				\begin{enumerate}
+					\item[a.] If the node is not in the frontier we simply add it.
+					\item[b.] If it is already in the frontier, we only add it if its \textit{f} value is better (lower) than the one in the frontier, substituting the worst one.
+				\end{enumerate}
+			
+				\lstset{style=mystyle}
+				\lstinputlisting[title={Code 3.4 \textit{initialnode} creation}, firstline=24, lastline=25, language=python]{"code fragments/Search.txt"}
+			
+				\lstset{style=mystyle}
+				\lstinputlisting[title={Code 3.5 \textit{createTreeNodes} implementation}, firstline=68, lastline=85, language=python]{"code fragments/Search.txt"}
+			
+			\item \textbf{Generate solution}. Once we have a solution, we have to go through the last node to the first one to generate the proper solution (see \textit{Code 3.6}). We simply obtain the parent of each solution node and add it to the solution list until we reach the root node, when we stop and return the reversed list.
+			
+				\lstset{style=mystyle}
+				\lstinputlisting[title={Code 3.6 \textit{createSolution} implementation}, firstline=87, lastline=99, language=python]{"code fragments/Search.txt"}
+				
+			The last operation we must do is to create the solution file, which consists on writing the actions to follow in a file, along with the cost of the solution and the depth reached (see \textit{Code 3.7}).
+			
+				\lstset{style=mystyle}
+				\lstinputlisting[title={Code 3.7 Solution file generation from \textit{main.py}}, firstline=1, lastline=14, language=python]{"code fragments/main.txt"}
+				
+			An example of a solution file generated would be like this:
+				
+				\lstset{style=mystyle}
+				\lstinputlisting{"code fragments/solution.txt"}
+		\end{enumerate}
+		
+		\subsection{Timing}
+			We have taken time measurements for every algorithm with and without pruning, so we can appreciate correctly the important effect pruning has in searching algorithms. The tests included here were done with the file \textit{Tests.graphml} which follows the \textit{RomaniaMap} seen in class.
+			
+				\lstset{style=mystyle}
+				\lstinputlisting[title={Time measurements for initial node \textit{3} (\textit{Arad}), and the nodes remaining were \textit{14} (\textit{Bucharest}), \textit{13} (\textit{Glurglu} and \textit{20} (\textit{Neamt}))}]{"code fragments/time_measurement.txt"}
 \end{document}

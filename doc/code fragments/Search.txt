@@ -1,0 +1,99 @@
+def __init__(self, jsonPath, strategy, max_depth, inc_depth, pruning):
+	self.problem = P.Problem(jsonPath)
+	self.solution = self.search(self.problem, strategy, max_depth, inc_depth, pruning)
+
+def search(self, problem, strategy, max_depth, inc_depth, pruning):
+	current_depth = inc_depth
+	solution = None
+
+	while not solution and (current_depth <= max_depth):
+		if strategy == 'ids':
+			solution = self.fenced_search(problem, strategy, current_depth, pruning)
+			current_depth += inc_depth
+		else:
+			solution = self.fenced_search(problem, strategy, max_depth, pruning)
+			current_depth += max_depth
+
+	return solution
+
+def fenced_search(self, problem, strategy, max_depth, pruning):
+	visitedList = []
+
+	frontier = F.Frontier()
+
+initial_node = TN.TreeNode(None, self.problem.InitState, 0, None, 0)
+initial_node.f = 0
+
+	solution = False
+
+	if problem.isGoal(initial_node.state):
+		solution = True
+		current_node = initial_node
+
+	frontier.insert(initial_node)
+
+	while not solution and not frontier.isEmpty():
+		current_node = frontier.remove()
+		visitedList.append(current_node.state.md5checksum)
+
+		if problem.isGoal(current_node.state):
+			solution = True
+		else:
+			successorsList = problem.StateSpace.successors(current_node.state)
+			treenodesList = self.createTreeNodes(successorsList, current_node, max_depth, strategy)
+
+			for node in treenodesList:
+				
+if pruning:
+	if node.state.md5checksum not in visitedList:
+		found = False
+		for i in range(len(frontier.frontier)):
+			if frontier.frontier[i].state.md5checksum == node.state.md5checksum:
+				found = True
+				break
+
+		if not found:
+			frontier.insert(node)
+		else:
+			if abs(frontier.frontier[i].f) > abs(node.f):
+				frontier.frontier.pop(i)
+				frontier.insert(node)
+else:
+	frontier.insert(node)
+	if solution:
+		return self.createSolution(current_node)
+	else:
+		return False   
+
+def createTreeNodes(self, successorsList, current_node, max_depth, strategy):
+	treeNodesList = blist([])
+
+	if current_node.d < max_depth:
+		for successor in successorsList:
+			node = TN.TreeNode(current_node, successor[1], current_node.pathcost + float(successor[2]), successor[0],
+							  current_node.d + 1)
+
+			if strategy == 'bfs':
+				node.f = node.d
+			elif (strategy == 'dfs') or (strategy == 'dls') or (strategy == 'ids'):
+				node.f = -node.d
+			elif strategy == 'ucs':
+				node.f = node.pathcost
+
+			treeNodesList.append(node)
+
+	return treeNodesList
+
+def createSolution(self, current_node):
+	solution = blist([])
+
+	if current_node.parent is None:
+		solution.append(current_node)
+
+	while current_node.parent is not None:
+		solution.append(current_node)
+		current_node = current_node.parent
+
+	solution.reverse()
+
+	return solution

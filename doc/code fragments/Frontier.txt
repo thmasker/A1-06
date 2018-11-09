@@ -1,0 +1,26 @@
+def __init__(self):
+	self.frontier = blist([])
+
+def insert(self, treeNode):
+	if psutil.swap_memory()[3] >= 80:
+		print("Not enough space in memory")
+		raise MemoryError
+	else:
+		self.frontier.append(treeNode)
+
+def remove(self):
+	try:
+		low = 0
+		for i in range(len(self.frontier)):
+			if abs(self.frontier[i].f) < abs(self.frontier[low].f):
+				low = i
+		return self.frontier.pop(low)
+	except IndexError as index_error:
+		print(index_error)
+		raise SystemExit
+
+def isEmpty(self):
+	if not self.frontier:
+		return True
+	else:
+		return False

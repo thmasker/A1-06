@@ -1,0 +1,7 @@
+def __init__(self, parent, state, pathcost, action, d):
+	self.parent = parent
+	self.state = state
+	self.pathcost = pathcost
+	self.action = action
+	self.d = d
+	self.f = random.randint(1, 10000)

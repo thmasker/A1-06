@@ -36,7 +36,7 @@ if __name__ == '__main__':
 
     start = timeit.default_timer()
     searching = S.Search(jsonPath, strategy, max_depth, inc_depth, pruning)
-    print("Execution time: " + str(timeit.default_timer() - start) + "\n")
+    print("Execution time: " + str(timeit.default_timer() - start))
 
     if not searching.solution:
         print("\nNo solution found")

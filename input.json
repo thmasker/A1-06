@@ -1,7 +1,7 @@
 {
-	"graphmlfile":	"../data/Tests.graphml",
+	"graphmlfile":	"data/Tests.graphml",
 	"IntSt":	{
 		"node":		"3",
-		"listNodes":	["14"]
+		"listNodes":	["14,13"]
 	}
 }

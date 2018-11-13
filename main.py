@@ -36,7 +36,8 @@ if __name__ == '__main__':
 
     start = timeit.default_timer()
     searching = S.Search(jsonPath, strategy, max_depth, inc_depth, pruning)
-    print("Execution time: " + str(timeit.default_timer() - start))
+    timespent = timeit.default_timer() - start
+    print("Execution time: " + str(timespent))
 
     if not searching.solution:
         print("\nNo solution found")
@@ -50,7 +51,8 @@ if __name__ == '__main__':
                 file.write(node.action + "\n")
 
         file.write("\nThe cost of the path is " + str(searching.solution[-1].pathcost) + "\n")
-        file.write("The solution was found at depth " + str(searching.solution[-1].d))
+        file.write("The solution was found at depth " + str(searching.solution[-1].d) + "\n")
+        file.write("The solution was found in " + str(timespent) + " seconds")
 
         file.close()
 

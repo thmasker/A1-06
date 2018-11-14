@@ -25,11 +25,11 @@ if __name__ == '__main__':
         print("[ValueError] Not valid type. Must be \"y\" or \"n\"")
         raise SystemExit
 
-    strategy = input("Select the strategy to apply (bfs, dfs, dls, ids, ucs): ")
+    strategy = input("Select the strategy to apply (bfs, dfs, dls, ids, ucs, gs, a*): ")
 
     if (strategy != 'bfs') and (strategy != 'dfs') and (strategy != 'dls') and (strategy != 'ids')\
-            and (strategy != 'ucs'):
-        print("[ValueError] Not valid strategy. Must be \"bfs\", \"dfs\", \"dls\", \"ids\" or \"ucs\"")
+            and (strategy != 'ucs') and (strategy != 'gs') and (strategy != 'a*'):
+        print("[ValueError] Not valid strategy. Must be \"bfs\", \"dfs\", \"dls\", \"ids\", \"ucs\", \"gs\" or \"a*\"")
         raise SystemExit
 
     jsonPath = input("Enter the path to the .json file: ")
@@ -44,14 +44,15 @@ if __name__ == '__main__':
     else:
         file = open("solution.txt", "w+")
 
-        for node in searching.solution:
+        for node in searching.solution[0]:
             if node.parent is None:
                 file.write("You already are in the goal node!!!\n")
             else:
-                file.write(node.action + "\n")
+                file.write(node.action + " " + str(node.state.nodesRemaining) + "\n")
 
-        file.write("\nThe cost of the path is " + str(searching.solution[-1].pathcost) + "\n")
-        file.write("The solution was found at depth " + str(searching.solution[-1].d) + "\n")
+        file.write("\nTotal nodes generated: " + str(searching.solution[1]) + "\n")
+        file.write("The cost of the path is " + str(searching.solution[0][-1].pathcost) + "\n")
+        file.write("The solution was found at depth " + str(searching.solution[0][-1].d) + "\n")
         file.write("The solution was found in " + str(timespent) + " seconds")
 
         file.close()

@@ -1,5 +1,6 @@
 import src.Graph as G
 import src.State as S
+import math
 
 """
 Class Name: StateSpace
@@ -53,3 +54,33 @@ class StateSpace:
     """
     def belongNode(self, state):
         return self.graph.belongNode(state.currentPosition)
+
+    """
+    Method name:    distance
+    Description:    Calculates the straightline distance between two nodes
+    Calling arguments:  - idNode1. Node of the graph
+                        - idNode2. Node of the graph
+    Return value:   dist. Distance between two nodes in units of earth_radius
+    """
+    def distance(self, idNode1, idNode2):
+        (lng1, lat1) = self.graph.positionNode(idNode1)
+        (lng2, lat2) = self.graph.positionNode(idNode2)
+        earth_radius = 6371009
+
+        phi1 = math.radians(lat1)
+        phi2 = math.radians(lat2)
+        d_phi = phi2 - phi1
+
+        theta1 = math.radians(lng1)
+        theta2 = math.radians(lng2)
+        d_theta = theta2 - theta1
+
+        h = math.sin(d_phi / 2) ** 2 + math.cos(phi1) * math.cos(phi2) * math.sin(d_theta / 2) ** 2
+        h = min(1.0, h)  # protect against floating point errors
+
+        arc = 2 * math.asin(math.sqrt(h))
+
+        # return distance in units of earth_radius
+        dist = arc * earth_radius
+
+        return dist

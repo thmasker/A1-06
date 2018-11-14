@@ -50,7 +50,7 @@ class Search:
     Return value:   solution. Solution found. If the algorithm did not find solution it returns False
     """
     def fenced_search(self, problem, strategy, max_depth, pruning):
-        visitedList = []
+        visitedList = {}
 
         frontier = F.Frontier()
 
@@ -69,7 +69,6 @@ class Search:
 
         while not solution and not frontier.isEmpty():
             current_node = frontier.remove()
-            visitedList.append(current_node.state.md5checksum)
 
             if problem.isGoal(current_node.state):
                 solution = True
@@ -80,34 +79,14 @@ class Search:
                 for node in treenodesList:
                     if pruning:
                         if node.state.md5checksum not in visitedList:
-                            found = False
-                            for i in range(len(frontier.frontier)):
-                                if frontier.frontier[i].state.md5checksum == node.state.md5checksum:
-                                    found = True
-                                    break
-
-                            if not found:
+                            frontier.insert(node)
+                            visitedList[node.state.md5checksum] = node.f
+                            nodes_generated += 1
+                        else:
+                            if abs(visitedList[node.state.md5checksum]) > abs(node.f):
                                 frontier.insert(node)
+                                visitedList[node.state.md5checksum] = node.f
                                 nodes_generated += 1
-                            else:
-                                if abs(frontier.frontier[i].f) > abs(node.f):
-                                    frontier.frontier.pop(i)
-                                    frontier.insert(node)
-                                    nodes_generated += 1
-
-                        # for visited in visitedList:
-                        #     found = False
-                        #     if node.state.md5checksum == visited.state.md5checksum:
-                        #         found = True
-                        #         break
-                        #
-                        # if not found:
-                        #     frontier.insert(node)
-                        #     nodes_generated += 1
-                        # else:
-                        #     if abs(visited.f) > abs(node.f):
-                        #         frontier.insert(node)
-                        #         nodes_generated += 1
                     else:
                         frontier.insert(node)
                         nodes_generated += 1

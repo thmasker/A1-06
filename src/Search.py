@@ -65,6 +65,8 @@ class Search:
 
         frontier.insert(initial_node)
 
+        nodes_generated = 1
+
         while not solution and not frontier.isEmpty():
             current_node = frontier.remove()
             visitedList.append(current_node.state.md5checksum)
@@ -75,10 +77,7 @@ class Search:
                 successorsList = problem.StateSpace.successors(current_node.state)
                 treenodesList = self.createTreeNodes(successorsList, current_node, max_depth, strategy)
 
-                # With pruning we should prove every node in treenodesList is not in the frontier before inserting,
-                #   also take into account if it is in the list, the f value...i
                 for node in treenodesList:
-                    
                     if pruning:
                         if node.state.md5checksum not in visitedList:
                             found = False
@@ -89,14 +88,31 @@ class Search:
 
                             if not found:
                                 frontier.insert(node)
+                                nodes_generated += 1
                             else:
                                 if abs(frontier.frontier[i].f) > abs(node.f):
                                     frontier.frontier.pop(i)
                                     frontier.insert(node)
+                                    nodes_generated += 1
+
+                        # for visited in visitedList:
+                        #     found = False
+                        #     if node.state.md5checksum == visited.state.md5checksum:
+                        #         found = True
+                        #         break
+                        #
+                        # if not found:
+                        #     frontier.insert(node)
+                        #     nodes_generated += 1
+                        # else:
+                        #     if abs(visited.f) > abs(node.f):
+                        #         frontier.insert(node)
+                        #         nodes_generated += 1
                     else:
                         frontier.insert(node)
+                        nodes_generated += 1
         if solution:
-            return self.createSolution(current_node)
+            return self.createSolution(current_node), nodes_generated
         else:
             return False   
 
@@ -114,8 +130,8 @@ class Search:
 
         if current_node.d < max_depth:
             for successor in successorsList:
-                node = TN.TreeNode(current_node, successor[1], current_node.pathcost + float(successor[2]), successor[0],
-                                  current_node.d + 1)
+                node = TN.TreeNode(current_node, successor[1], current_node.pathcost + float(successor[2]),
+                                   successor[0], current_node.d + 1)
 
                 if strategy == 'bfs':
                     node.f = node.d
@@ -123,6 +139,11 @@ class Search:
                     node.f = -node.d
                 elif strategy == 'ucs':
                     node.f = node.pathcost
+                elif strategy == 'gs':
+                    node.f = self.problem.StateSpace.distance(node, self.problem.InitState.nodesRemaining[-1])
+                elif strategy == 'a*':
+                    node.f = node.pathcost \
+                             + self.problem.StateSpace.distance(node, self.problem.InitState.nodesRemaining[-1])
 
                 treeNodesList.append(node)
 

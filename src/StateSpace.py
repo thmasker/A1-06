@@ -63,8 +63,13 @@ class StateSpace:
     Return value:   dist. Distance between two nodes in units of earth_radius
     """
     def distance(self, idNode1, idNode2):
-        (lng1, lat1) = self.graph.positionNode(idNode1)
-        (lng2, lat2) = self.graph.positionNode(idNode2)
+        try:
+            (lng1, lat1) = self.graph.positionNode(idNode1)
+            (lng2, lat2) = self.graph.positionNode(idNode2)
+        except ValueError:
+            print("\n[ERROR] Node not exists on the graph")
+            raise SystemExit
+
         earth_radius = 6371009
 
         phi1 = math.radians(lat1)

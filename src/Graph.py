@@ -52,11 +52,12 @@ class Graph:
     Return value: Tuple containing latitude and longitude of node if it belongs to the graph. Error otherwise
     """
     def positionNode(self, nodeid):
-        for node in self.nodes:
-            if nodeid == node.get('id'):
-                return node[1].text, node[0].text
-
-        return '[ERROR] Node does not exist on the graph'
+        if self.belongNode(nodeid):
+            for node in self.nodes:
+                if nodeid == node.get('id'):
+                    return float(node[1].text), float(node[0].text)
+        else:
+            raise ValueError
 
     """
     Method name:    adjacentNode

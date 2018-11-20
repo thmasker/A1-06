@@ -119,10 +119,18 @@ class Search:
                 elif strategy == 'ucs':
                     node.f = node.pathcost
                 elif strategy == 'gs':
-                    node.f = self.problem.StateSpace.distance(node, self.problem.InitState.nodesRemaining[-1])
+                    if not node.state.nodesRemaining:
+                        node.f = 0
+                    else:
+                        node.f = min(self.problem.StateSpace.distance(node.state.currentPosition, destNode)
+                                        for destNode in node.state.nodesRemaining)
                 elif strategy == 'a*':
-                    node.f = node.pathcost \
-                             + self.problem.StateSpace.distance(node, self.problem.InitState.nodesRemaining[-1])
+                    if not node.state.nodesRemaining:
+                        node.f = node.pathcost
+                    else:
+                        node.f = node.pathcost \
+                                    + min(self.problem.StateSpace.distance(node.state.currentPosition, destNode)
+                                            for destNode in node.state.nodesRemaining)
 
                 treeNodesList.append(node)
 

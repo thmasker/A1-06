@@ -1,6 +1,8 @@
 import src.Search as S
 import os
 import timeit
+import gpxpy
+import gpxpy.gpx
 
 if __name__ == '__main__':
     try:
@@ -32,7 +34,7 @@ if __name__ == '__main__':
         print("[ValueError] Not valid strategy. Must be \"bfs\", \"dfs\", \"dls\", \"ids\", \"ucs\", \"gs\" or \"a*\"")
         raise SystemExit
 
-    heuristic = input("Select the heuristic to use (0, 1): ")
+    heuristic = int(input("Select the heuristic to use (0, 1): "))
 
     if (heuristic != 0) and (heuristic != 1):
         print("[ValueError] Not valid heuristic")
@@ -49,12 +51,24 @@ if __name__ == '__main__':
         print("\nNo solution found")
     else:
         file = open("solution.txt", "w+")
+        gpxFile = open("solution.gpx", "w+")
+        gpx = gpxpy.gpx.GPX()
+
+        gpx_track = gpxpy.gpx.GPXTrack()
+        gpx.tracks.append(gpx_track)
+
+        gpx_segment = gpxpy.gpx.GPXTrackSegment()
+        gpx_track.segments.append(gpx_segment)
 
         for node in searching.solution[0]:
             if node.parent is None:
                 file.write("You already are in the goal node!!!\n")
             else:
                 file.write(node.action + " " + str(node.state.nodesRemaining) + "\n")
+                gpx_segment.points.append(
+                    gpxpy.gpx.GPXTrackPoint(
+                        searching.problem.StateSpace.graph.positionNode(node.state.currentPosition)[1],
+                        searching.problem.StateSpace.graph.positionNode(node.state.currentPosition)[0]))
 
         file.write("\nTotal nodes generated: " + str(searching.solution[1]) + "\n")
         file.write("The cost of the path is " + str(searching.solution[0][-1].pathcost) + "\n")
@@ -62,5 +76,7 @@ if __name__ == '__main__':
         file.write("The solution was found in " + str(timespent) + " seconds")
 
         file.close()
+
+        gpxFile.write(gpx.to_xml())
 
         print("\nSolution found!! You can see it at " + os.path.abspath("../solution.txt"))

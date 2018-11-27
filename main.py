@@ -32,10 +32,16 @@ if __name__ == '__main__':
         print("[ValueError] Not valid strategy. Must be \"bfs\", \"dfs\", \"dls\", \"ids\", \"ucs\", \"gs\" or \"a*\"")
         raise SystemExit
 
+    heuristic = input("Select the heuristic to use (0, 1): ")
+
+    if (heuristic != 0) and (heuristic != 1):
+        print("[ValueError] Not valid heuristic")
+        raise SystemExit
+
     jsonPath = input("Enter the path to the .json file: ")
 
     start = timeit.default_timer()
-    searching = S.Search(jsonPath, strategy, max_depth, inc_depth, pruning)
+    searching = S.Search(jsonPath, strategy, max_depth, inc_depth, pruning, heuristic)
     timespent = timeit.default_timer() - start
     print("Execution time: " + str(timespent))
 

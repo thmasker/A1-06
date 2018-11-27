@@ -51,7 +51,7 @@
 	The most complex of the three methods created is \textit{adjacentNode} (see \textit{Figure 1.1}). This method goes through all the node's edges, and appends to the adjacency list those which source node is the \textit{nodeid} we are looking for. Firstly, we append each edge to the adjacency list with their \textit{name} and \textit{length} fields as \textit{SinNombre} and \textit{NULL} respectively. After that we search both fields on the inner data of each edge using the keys dictionary created on the constructor, and we refill both attributes with the real ones. If anyone of them is missing, we'll know that, as it will appear as \textit{SinNombre} or \textit{NULL} in the adjacency list returned.
 	
 		\lstset{style=mystyle}
-		\lstinputlisting[title={Code 1.1 Method \textit{adjacentNode}},language=python]{"code fragments/adjacentNode.txt"}
+		\lstinputlisting[title={Code 1.1 Method \textit{adjacentNode}},language=Python]{"code fragments/adjacentNode.txt"}
 		\lstset{style=mystyle}
 		\lstinputlisting[title={Code 1.2 Keys dictionary}, firstline=25, lastline=27]{"code fragments/adjacentNode.txt"}
 	

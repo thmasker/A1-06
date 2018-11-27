@@ -12,9 +12,9 @@ class Search:
     Method name:    __init__
     Description:    creates the problem and initiates searching algorithms
     """
-    def __init__(self, jsonPath, strategy, max_depth, inc_depth, pruning):
+    def __init__(self, jsonPath, strategy, max_depth, inc_depth, pruning, heuristic):
         self.problem = P.Problem(jsonPath)
-        self.solution = self.search(self.problem, strategy, max_depth, inc_depth, pruning)
+        self.solution = self.search(self.problem, strategy, max_depth, inc_depth, pruning, heuristic)
 
     """
     Method name:    search
@@ -26,16 +26,16 @@ class Search:
                         - pruning. Indicates if we must take into account repeated states in the frontier
     Return value:   solution. Solution found. If the algorithm did not find solution it returns None
     """
-    def search(self, problem, strategy, max_depth, inc_depth, pruning):
+    def search(self, problem, strategy, max_depth, inc_depth, pruning, heuristic):
         current_depth = inc_depth
         solution = None
 
         while not solution and (current_depth <= max_depth):
             if strategy == 'ids':
-                solution = self.fenced_search(problem, strategy, current_depth, pruning)
+                solution = self.fenced_search(problem, strategy, current_depth, pruning, heuristic)
                 current_depth += inc_depth
             else:
-                solution = self.fenced_search(problem, strategy, max_depth, pruning)
+                solution = self.fenced_search(problem, strategy, max_depth, pruning, heuristic)
                 current_depth += max_depth
 
         return solution
@@ -49,7 +49,7 @@ class Search:
                         - pruning. Indicates if we must take into account repeated states in the frontier
     Return value:   solution. Solution found. If the algorithm did not find solution it returns False
     """
-    def fenced_search(self, problem, strategy, max_depth, pruning):
+    def fenced_search(self, problem, strategy, max_depth, pruning, heuristic):
         visitedList = {}
 
         frontier = F.Frontier()
@@ -74,7 +74,7 @@ class Search:
                 solution = True
             else:
                 successorsList = problem.StateSpace.successors(current_node.state)
-                treenodesList = self.createTreeNodes(successorsList, current_node, max_depth, strategy)
+                treenodesList = self.createTreeNodes(successorsList, current_node, max_depth, strategy, heuristic)
 
                 for node in treenodesList:
                     if pruning:
@@ -104,7 +104,7 @@ class Search:
                         - strategy. Strategy to follow to generate nodes.
     Return value:   treeNodesList. List of all children nodes generated
     """
-    def createTreeNodes(self, successorsList, current_node, max_depth, strategy):
+    def createTreeNodes(self, successorsList, current_node, max_depth, strategy, heuristic):
         treeNodesList = blist([])
 
         if current_node.d < max_depth:
@@ -122,15 +122,17 @@ class Search:
                     if not node.state.nodesRemaining:
                         node.f = 0
                     else:
-                        node.f = min(self.problem.StateSpace.distance(node.state.currentPosition, destNode)
-                                        for destNode in node.state.nodesRemaining)
+                        if heuristic == 0:
+                            node.f = min(self.problem.StateSpace.distance(node.state.currentPosition, destNode)
+                                            for destNode in node.state.nodesRemaining)
                 elif strategy == 'a*':
                     if not node.state.nodesRemaining:
                         node.f = node.pathcost
                     else:
-                        node.f = node.pathcost \
-                                    + min(self.problem.StateSpace.distance(node.state.currentPosition, destNode)
-                                            for destNode in node.state.nodesRemaining)
+                        if heuristic == 0:
+                            node.f = node.pathcost \
+                                        + min(self.problem.StateSpace.distance(node.state.currentPosition, destNode)
+                                                for destNode in node.state.nodesRemaining)
 
                 treeNodesList.append(node)
 

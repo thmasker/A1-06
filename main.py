@@ -1,7 +1,7 @@
 import src.Search as S
 import os
 import timeit
-import gpxpy
+import datetime
 import gpxpy.gpx
 
 if __name__ == '__main__':
@@ -65,10 +65,11 @@ if __name__ == '__main__':
                 file.write("You already are in the goal node!!!\n")
             else:
                 file.write(node.action + " " + str(node.state.nodesRemaining) + "\n")
-                gpx_segment.points.append(
-                    gpxpy.gpx.GPXTrackPoint(
-                        searching.problem.StateSpace.graph.positionNode(node.state.currentPosition)[1],
-                        searching.problem.StateSpace.graph.positionNode(node.state.currentPosition)[0]))
+
+            gpx_segment.points.append(gpxpy.gpx.GPXTrackPoint(
+                searching.problem.StateSpace.graph.positionNode(node.state.currentPosition)[1],
+                searching.problem.StateSpace.graph.positionNode(node.state.currentPosition)[0],
+                elevation=0, time=datetime.datetime.now(), name=node.state.currentPosition))
 
         file.write("\nTotal nodes generated: " + str(searching.solution[1]) + "\n")
         file.write("The cost of the path is " + str(searching.solution[0][-1].pathcost) + "\n")

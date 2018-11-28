@@ -147,12 +147,12 @@ class Search:
     def createSolution(self, current_node):
         solution = blist([])
 
-        if current_node.parent is None:
-            solution.append(current_node)
-
         while current_node.parent is not None:
             solution.append(current_node)
             current_node = current_node.parent
+
+        if current_node.parent is None:
+            solution.append(current_node)
 
         solution.reverse()
 

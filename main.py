@@ -62,9 +62,10 @@ if __name__ == '__main__':
 
         for node in searching.solution[0]:
             if node.parent is None:
-                file.write("You already are in the goal node!!!\n")
+                file.write("Initial Node: " + node.state.currentPosition + "\nI have to visit "
+                           + str(node.state.nodesRemaining) + "\n")
             else:
-                file.write(node.action + " " + str(node.state.nodesRemaining) + "\n")
+                file.write("\n" + node.action + "\nI have to visit " + str(node.state.nodesRemaining) + "\n")
 
             gpx_segment.points.append(gpxpy.gpx.GPXTrackPoint(
                 searching.problem.StateSpace.graph.positionNode(node.state.currentPosition)[1],

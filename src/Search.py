@@ -54,7 +54,7 @@ class Search:
 
         frontier = F.Frontier()
 
-        initial_node = TN.TreeNode(None, self.problem.InitState, 0, None, 0)
+        initial_node = TN.TreeNode(None, self.problem.InitState, 0, None, 0, 0)
         initial_node.f = 0
 
         solution = False
@@ -110,34 +110,9 @@ class Search:
         if current_node.d < max_depth:
             for successor in successorsList:
                 node = TN.TreeNode(current_node, successor[1], current_node.pathcost + float(successor[2]),
-                                   successor[0], current_node.d + 1)
-
-                if strategy == 'bfs':
-                    node.f = node.d
-                elif (strategy == 'dfs') or (strategy == 'dls') or (strategy == 'ids'):
-                    node.f = -node.d
-                elif strategy == 'ucs':
-                    node.f = node.pathcost
-                elif strategy == 'gs':
-                    if not node.state.nodesRemaining:
-                        node.f = 0
-                    else:
-                        if heuristic == 0:
-                            node.f = min(self.problem.StateSpace.distance(node.state.currentPosition, destNode)
-                                            for destNode in node.state.nodesRemaining)
-                elif strategy == 'a*':
-                    if not node.state.nodesRemaining:
-                        node.f = node.pathcost
-                    else:
-                        if heuristic == 0:
-                            node.f = node.pathcost \
-                                        + min(self.problem.StateSpace.distance(node.state.currentPosition, destNode)
-                                                for destNode in node.state.nodesRemaining)
-
+                                   successor[0], current_node.d + 1, strategy, heuristic)
                 treeNodesList.append(node)
-
-        return treeNodesList
-
+            return treeNodesList
     """
     Method name:    createSolution
     Description:    Creates a list with all the treeNodes which make the solution found

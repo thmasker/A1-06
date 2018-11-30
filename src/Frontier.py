@@ -36,7 +36,7 @@ class Frontier:
         try:
             low = 0
             for i in range(len(self.frontier)):
-                if abs(self.frontier[i].f) < abs(self.frontier[low].f):
+                if self.frontier[i].f < self.frontier[low].f:
                     low = i
             return self.frontier.pop(low)
         except IndexError as index_error:

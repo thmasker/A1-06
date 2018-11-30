@@ -42,7 +42,8 @@ class StateSpace:
                 costActi = node[3]
                 successorsList.append((acci, newState, costActi))
         else:
-            print(state + " does not belong to the graph\n")
+            print("\n[ERROR] Node '" + state.currentPosition + "' does not belong to the graph\n")
+            raise SystemExit
 
         return successorsList
 
@@ -67,7 +68,6 @@ class StateSpace:
             (lng1, lat1) = self.graph.positionNode(idNode1)
             (lng2, lat2) = self.graph.positionNode(idNode2)
         except ValueError:
-            print("\n[ERROR] Node not exists on the graph")
             raise SystemExit
 
         earth_radius = 6371009

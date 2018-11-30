@@ -34,11 +34,12 @@ class Problem:
     Return value:   True if problem is solved; False otherwise
     """
     def isGoal(self, state):
-        if len(state.nodesRemaining) == 1:
-            if state.nodesRemaining[0] == self.InitState.currentPosition:
-                return True
-
         if not state.nodesRemaining:
             return True
         else:
-            return False
+            for node in state.nodesRemaining:
+                if node != self.InitState.currentPosition:
+                    return False
+
+            return True
+

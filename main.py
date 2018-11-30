@@ -34,11 +34,14 @@ if __name__ == '__main__':
         print("[ValueError] Not valid strategy. Must be \"bfs\", \"dfs\", \"dls\", \"ids\", \"ucs\", \"gs\" or \"a*\"")
         raise SystemExit
 
-    heuristic = int(input("Select the heuristic to use (0, 1): "))
+    if (strategy == 'a*') or (strategy == 'gs'):
+        heuristic = int(input("Select the heuristic to use (0, 1): "))
 
-    if (heuristic != 0) and (heuristic != 1):
-        print("[ValueError] Not valid heuristic")
-        raise SystemExit
+        if (heuristic != 0) and (heuristic != 1):
+            print("[ValueError] Not valid heuristic")
+            raise SystemExit
+    else:
+        heuristic = 0
 
     jsonPath = input("Enter the path to the .json file: ")
 

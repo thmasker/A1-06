@@ -57,6 +57,7 @@ class Graph:
                 if nodeid == node.get('id'):
                     return float(node[1].text), float(node[0].text)
         else:
+            print("\n[ERROR] Node '" + nodeid + "' does not exist on the graph")
             raise ValueError
 
     """
@@ -83,7 +84,7 @@ class Graph:
                             lst[3] = data.text
                             adjacencyList[-1] = tuple(lst)
         else:
-            print("\n[ERROR] Node not exists on the graph")
+            print("\n[ERROR] Node '" + nodeid + "' does not exist on the graph")
             raise SystemExit
 
         return adjacencyList

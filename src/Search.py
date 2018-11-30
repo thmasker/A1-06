@@ -111,7 +111,9 @@ class Search:
                 node = TN.TreeNode(current_node, successor[1], current_node.pathcost + float(successor[2]),
                                    successor[0], current_node.d + 1, strategy, heuristic, self.problem.StateSpace.distance)
                 treeNodesList.append(node)
-            return treeNodesList
+
+        return treeNodesList
+
     """
     Method name:    createSolution
     Description:    Creates a list with all the treeNodes which make the solution found

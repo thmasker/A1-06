@@ -55,7 +55,6 @@ class Search:
         frontier = F.Frontier()
 
         initial_node = TN.TreeNode(None, self.problem.InitState, 0, None, 0)
-        initial_node.f = 0
 
         solution = False
 
@@ -93,7 +92,7 @@ class Search:
         if solution:
             return self.createSolution(current_node), nodes_generated
         else:
-            return False   
+            return False
 
     """
     Method name:    createTreeNodes

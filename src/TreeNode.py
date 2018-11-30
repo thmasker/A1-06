@@ -34,6 +34,9 @@ class TreeNode:
                 if heuristic == 0:
                     return min(
                         cb_distance(self.state.currentPosition, destNode) for destNode in self.state.nodesRemaining)
+                elif heuristic == 1:
+                    return min(cb_distance(self.state.currentPosition, destNode) for destNode in self.state.nodesRemaining) \
+                           + self.calcHeuristic1(cb_distance)
         elif strategy == 'a*':
             if not self.state.nodesRemaining:
                 return self.pathcost
@@ -41,5 +44,23 @@ class TreeNode:
                 if heuristic == 0:
                     return self.pathcost \
                            + min(cb_distance(self.state.currentPosition, destNode) for destNode in self.state.nodesRemaining)
+                elif heuristic == 1:
+                    return self.pathcost \
+                           + min(cb_distance(self.state.currentPosition, destNode) for destNode in self.state.nodesRemaining) \
+                           + self.calcHeuristic1(cb_distance)
         elif strategy == 0:
             return 0
+
+    def calcHeuristic1(self, cb_distance):
+        distance = 0
+
+        for node1 in self.state.nodesRemaining:
+            distances = []
+
+            for node2 in self.state.nodesRemaining:
+                if node1 != node2:
+                    distances.append(cb_distance(node1, node2))
+
+            distance += min(distances) if distances else 0
+
+        return distance

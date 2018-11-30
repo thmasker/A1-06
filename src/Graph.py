@@ -83,6 +83,7 @@ class Graph:
                             lst[3] = data.text
                             adjacencyList[-1] = tuple(lst)
         else:
-            adjacencyList = '[ERROR] Node does not exist on the node'
+            print("\n[ERROR] Node not exists on the graph")
+            raise SystemExit
 
         return adjacencyList

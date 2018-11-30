@@ -8,3 +8,5 @@ src/__pycache__/*
 queue-dir-*/*
 doc/*.bbl
 doc/*.blg
+solution.txt
+solution.gpx

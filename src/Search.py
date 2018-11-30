@@ -54,7 +54,7 @@ class Search:
 
         frontier = F.Frontier()
 
-        initial_node = TN.TreeNode(None, self.problem.InitState, 0, None, 0, 0)
+        initial_node = TN.TreeNode(None, self.problem.InitState, 0, None, 0)
         initial_node.f = 0
 
         solution = False
@@ -110,7 +110,7 @@ class Search:
         if current_node.d < max_depth:
             for successor in successorsList:
                 node = TN.TreeNode(current_node, successor[1], current_node.pathcost + float(successor[2]),
-                                   successor[0], current_node.d + 1, strategy, heuristic)
+                                   successor[0], current_node.d + 1, strategy, heuristic, self.problem.StateSpace.distance)
                 treeNodesList.append(node)
             return treeNodesList
     """

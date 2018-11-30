@@ -13,15 +13,15 @@ class TreeNode:
                         - pathcost: cost of the path from the initial node to the current one
                         - d: depth of the node
     """
-    def __init__(self, parent, state, pathcost, action, d, strategy, heuristic):
+    def __init__(self, parent, state, pathcost, action, d, strategy = 0, heuristic = 0, cb_distance = None):
         self.parent = parent
         self.state = state
         self.pathcost = pathcost
         self.action = action
         self.d = d
-        self.f = self.factory(strategy, heuristic)
+        self.f = self.factory(strategy, heuristic, cb_distance)
 
-    def factory(self, type, heuristic):
+    def factory(self, type, heuristic, cb_distance):
         if type == 'bfs':
             return self.d
         elif (type == 'dfs') or (type == 'dls') or (type == 'ids'):
@@ -33,14 +33,14 @@ class TreeNode:
                 return 0
             else:
                 if heuristic == 0:
-                    return min(self.state.distance(node.state.currentPosition, destNode) for destNode in node.state.nodesRemaining)
+                    return min(cb_distance(self.state.currentPosition, destNode) for destNode in self.state.nodesRemaining)
         elif type == 'a*':
             if not self.state.nodesRemaining:
-                return node.pathcost
+                return self.pathcost
             else:
                 if heuristic == 0:
                     return self.pathcost \
-                            + min(self.state.distance(node.state.currentPosition, destNode) for destnode in self.state.nodesRemaining)
+                            + min(cb_distance(self.state.currentPosition, destNode) for destNode in self.state.nodesRemaining)
         elif type == 0:
             return 0
 

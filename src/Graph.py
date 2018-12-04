@@ -13,6 +13,7 @@ class Graph:
     """
     def __init__(self, graphml):
         self.file = graphml
+        self.nodes = {}
         try:
             self.graph = ET.parse(self.file).getroot()
         except ET.ParseError:
@@ -29,8 +30,28 @@ class Graph:
             if key.get('for') == 'edge':
                 self.keys[key.get('attr.name')] = key.get('id')
 
-        self.nodes = self.graph.findall('default:graph/default:node', self.ns)      # Store nodes
-        self.edges = self.graph.findall('default:graph/default:edge', self.ns)      # Store edges
+        nodes = self.graph.findall('default:graph/default:node', self.ns)      # Store nodes
+        edges = self.graph.findall('default:graph/default:edge', self.ns)      # Store edges
+
+        for node in nodes:
+            self.nodes[node.get('id')] = {}
+            self.nodes[node.get('id')]['adjacencyList'] = []
+            self.nodes[node.get('id')]['latitude'] = node[0].text
+            self.nodes[node.get('id')]['longitude'] = node[1].text
+
+        for edge in edges:
+            self.nodes[edge.get('source')]['adjacencyList']\
+                .append((edge.get('source'), edge.get('target'), 'SinNombre', 'NULL'))
+
+            for data in edge:
+                if data.get('key') == self.keys['name']:
+                    lst = list(self.nodes[edge.get('source')]['adjacencyList'][-1])
+                    lst[2] = data.text
+                    self.nodes[edge.get('source')]['adjacencyList'][-1] = tuple(lst)
+                elif data.get('key') == self.keys['length']:
+                    lst = list(self.nodes[edge.get('source')]['adjacencyList'][-1])
+                    lst[3] = data.text
+                    self.nodes[edge.get('source')]['adjacencyList'][-1] = tuple(lst)
 
     """
     Method name:    belongNode
@@ -39,11 +60,10 @@ class Graph:
     Return value: Boolean: True if nodeid exists on the graph; False otherwise
     """
     def belongNode(self, nodeid):
-        for node in self.nodes:
-            if nodeid == node.get('id'):
-                return True
-
-        return False
+        if nodeid in self.nodes:
+            return True
+        else:
+            return False
 
     """
     Method name:    positionNode
@@ -53,9 +73,7 @@ class Graph:
     """
     def positionNode(self, nodeid):
         if self.belongNode(nodeid):
-            for node in self.nodes:
-                if nodeid == node.get('id'):
-                    return float(node[1].text), float(node[0].text)
+            return float(self.nodes[nodeid]['longitude']), float(self.nodes[nodeid]['latitude'])
         else:
             print("\n[ERROR] Node '" + nodeid + "' does not exist on the graph")
             raise ValueError
@@ -67,24 +85,8 @@ class Graph:
     Return value: List of Tuples: each tuple is an adjacent node found
     """
     def adjacentNode(self, nodeid):
-        adjacencyList = []
-
         if self.belongNode(nodeid):
-            for edge in self.edges:
-                if edge.get('source') == nodeid:
-                    adjacencyList.append((edge.get('source'), edge.get('target'), 'SinNombre', 'NULL'))
-
-                    for data in edge:
-                        if data.get('key') == self.keys['name']:
-                            lst = list(adjacencyList[-1])
-                            lst[2] = data.text
-                            adjacencyList[-1] = tuple(lst)
-                        elif data.get('key') == self.keys['length']:
-                            lst = list(adjacencyList[-1])
-                            lst[3] = data.text
-                            adjacencyList[-1] = tuple(lst)
+            return self.nodes[nodeid]['adjacencyList']
         else:
             print("\n[ERROR] Node '" + nodeid + "' does not exist on the graph")
             raise SystemExit
-
-        return adjacencyList

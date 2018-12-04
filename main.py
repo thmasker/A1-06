@@ -84,4 +84,5 @@ if __name__ == '__main__':
 
         gpxFile.write(gpx.to_xml())
 
-        print("\nSolution found!! You can see it at " + os.path.abspath("../solution.txt"))
+        print("\nSolution found!! You can see it at " + os.path.abspath("../solution.txt") + " and "
+              + os.path.abspath("../solution.gpx"))

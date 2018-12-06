@@ -42,4 +42,3 @@ class Problem:
                     return False
 
             return True
-

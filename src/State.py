@@ -16,6 +16,3 @@ class State:
         self.nodesRemaining = nodesRemaining
         self.nodesRemaining.sort()
         self.md5checksum = hashlib.md5((str(self.currentPosition) + ",".join(str(self.nodesRemaining))).encode()).hexdigest()
-
-
-

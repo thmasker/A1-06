@@ -3,7 +3,6 @@ Class Name: TreeNode
 Class description:  This class simulates a specific node which belongs to a Tree
 """
 class TreeNode:
-
     """
     Method name:    __init__
     Description of the Method:  Constructor
@@ -11,6 +10,9 @@ class TreeNode:
                         - state: current state
                         - pathcost: cost of the path from the initial node to the current one
                         - d: depth of the node
+                        - strategy: strategy selected
+                        - heuristic: heuristic selected
+                        - cb_distance: function call to distance from class StateSpace
     """
     def __init__(self, parent, state, pathcost, action, d, strategy=0, heuristic=0, cb_distance=None):
         self.parent = parent

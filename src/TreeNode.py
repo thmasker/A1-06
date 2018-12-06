@@ -20,6 +20,14 @@ class TreeNode:
         self.d = d
         self.f = self.factory(strategy, heuristic, cb_distance)
 
+    """
+    Method name:    factory
+    Description:    Calculates the value of f depending of the strategy and heuristic chosen
+    Calling arguments:  - strategy: strategy selected
+                        - heuristic: heuristic selected
+                        - cb_distance: callback to function distance from the Class StateSpace
+    Return value:   It returns the f value to assign to the created TreeNode
+    """
     def factory(self, strategy, heuristic, cb_distance):
         if strategy == 'bfs':
             return self.d
@@ -51,6 +59,12 @@ class TreeNode:
         elif strategy == 0:
             return 0
 
+    """
+    Method name:    calcHeuristic1
+    Description:    This method calculates part of the Heuristic1
+    Calling arguments:  cb_distance: distance method of Class StateSpace
+    Return value:   distance: sum of all minimum distances from each remainingNode to the rest of them
+    """
     def calcHeuristic1(self, cb_distance):
         distance = 0
 
